@@ -17,10 +17,10 @@ function PostCard({ postObj, onUpdate, profileObj }) {
   };
 
   useEffect(() => {
-    const filteredProf = profileObj?.filter((index) => index.uid === user.uid);
+    const filteredProf = profileObj?.filter((index) => index.uid === postObj.uid);
     const prof = filteredProf.length === 0 ? {} : filteredProf[0];
     setProfile(prof);
-  }, [profileObj, user.uid]);
+  }, [postObj, user.uid]);
 
   return (
     <>

@@ -14,10 +14,12 @@ function Home() {
   const [profiles, setProfiles] = useState([]);
   const [profile, setProfile] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [checkprof, setCheckprof] = useState([]);
   console.warn('this is user id', user.uid);
   console.warn('this is all profile list', profiles);
   console.warn('this is posts', posts);
   console.warn('this is the single prof', profile);
+  console.warn(checkprof);
 
   const getProfiles = () => {
     getAllProfiles().then(setProfiles);
@@ -43,13 +45,18 @@ function Home() {
     getPosts();
   }, []);
 
+  useEffect(() => {
+    const profileCheck = profiles.filter((index) => index.uid === user.uid);
+    setCheckprof(profileCheck);
+  }, [profiles, user.uid]);
+
   // const user = { displayName: 'Dr. T' }; // TODO: COMMENT OUT FOR AUTH
   console.warn('these are the gets', getAllComments(), getAllPosts(), getAllProfiles());
 
   return (
     <>
       {
-      profiles.map((index) => (index.uid === user.uid ? (
+      profiles.filter((index) => (index.uid === user.uid ? (
         <div key={index.uid}>
           this will be the landing of posts!
           {/* map over posts using Card component */}
