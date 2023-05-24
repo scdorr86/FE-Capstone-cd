@@ -27,7 +27,7 @@ function Profile() {
       <div
         className="text-center d-flex flex-column justify-content-center align-content-center"
         style={{
-          height: '90vh',
+          height: '75vh',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',
@@ -35,8 +35,8 @@ function Profile() {
       >
         <h1>Hello {user.displayName}! </h1>
         <p>Profile Page</p>
-        {/* <p>{theProfile.avatar}</p>
-        <p>{theProfile.username}</p> */}
+        <img src={userProfile[0]?.avatar} alt="avatar" />
+        <p>{userProfile[0]?.username}</p>
       </div>
 
       <div>
