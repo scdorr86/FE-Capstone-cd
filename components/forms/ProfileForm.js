@@ -118,7 +118,7 @@ export default function ProfileForm({ obj, onUpdate }) {
               <Form.Control
                 type="text"
                 placeholder="Current Consoles"
-                name="category"
+                name="consoles"
                 value={formInput.consoles}
                 onChange={handleChange}
                 required

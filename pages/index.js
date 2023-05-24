@@ -1,10 +1,12 @@
-import { getAllProfiles, getSingleProfile } from '../api/profileData';
 import { useEffect, useState } from 'react';
-
+import { getAllProfiles, getSingleProfile } from '../api/profileData';
 import { getAllComments } from '../api/commentData';
 import { getAllPosts } from '../api/postData';
 import { useAuth } from '../utils/context/authContext'; // TODO: COMMENT IN FOR AUTH
-import { useFirebaseProfile } from '../utils/hooks/useFirebaseProfile';
+import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
+import ProfileForm from '../components/forms/ProfileForm';
+import PostCard from '../components/PostsCard';
+import PostForm from '../components/forms/PostForm';
 
 function Home() {
   const { user } = useAuth(); // TODO: COMMENT IN FOR AUTH
@@ -18,7 +20,7 @@ function Home() {
   console.warn('this is posts', posts);
   console.warn('this is the single prof', profile);
   console.warn(checkprof);
-  console.log('Hook result', theProfile);
+  console.warn('Hook result', theProfile);
 
   const getProfiles = () => {
     getAllProfiles().then(setProfiles);
@@ -53,43 +55,43 @@ function Home() {
   console.warn('these are the gets', getAllComments(), getAllPosts(), getAllProfiles());
 
   return (
-    <></>
-  )
+    <>
+      {
+      theProfile !== null ? (
+        <>
+          <div className="d-flex flex-wrap">
+            this will be the landing of posts!
+            {/* map over posts using Card component */}
+            {posts.map((post) => (
+              <PostCard key={post?.firebaseKey} profileObj={profiles} postObj={post} onUpdate={getPosts} />
+            ))}
+          </div>
+          <PostForm />
+        </>
+      )
+        : (
+          <>
+            <div>
+              <ProfileForm />
+              <PostForm />
+            </div>
+            <div
+              className="text-center d-flex flex-column justify-content-center align-content-center"
+              style={{
+                height: '90vh',
+                padding: '30px',
+                maxWidth: '400px',
+                margin: '0 auto',
+              }}
+            >
+              <h1>Hello {user.displayName}! </h1>
 
-  // return (
-  //   <>
-  //     {
-  //     profiles?.filter((index) => (index.uid === user.uid ? (
-  //       <div key={index.uid}>
-  //         this will be the landing of posts!
-  //         {/* map over posts using Card component */}
-  //         { posts.map((post) => (
-  //           <PostCard key={post.firebaseKey} profileObj={profiles} postObj={post} onUpdate={getPosts} />
-  //         ))}
-  //       </div>
-  //     )
-  //       : (
-  //         <>
-  //           <div>
-  //             <ProfileForm />
-  //           </div>
-  //           <div
-  //             className="text-center d-flex flex-column justify-content-center align-content-center"
-  //             style={{
-  //               height: '90vh',
-  //               padding: '30px',
-  //               maxWidth: '400px',
-  //               margin: '0 auto',
-  //             }}
-  //           >
-  //             <h1>Hello {user.displayName}! </h1>
-
-  //           </div>
-  //         </>
-  //       )))
-  //   }
-  //   </>
-  // );
+            </div>
+          </>
+        )
+    }
+    </>
+  );
 }
 
 export default Home;

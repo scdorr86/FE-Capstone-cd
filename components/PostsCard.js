@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Link from 'next/link';
-import { deletePost } from '../api/postData';
+// import Link from 'next/link';
+// import { deletePost } from '../api/postData';
 import { useAuth } from '../utils/context/authContext';
+import Buttons from './UserButtons';
 
 function PostCard({ postObj, onUpdate, profileObj }) {
   // const [deleteBtn, setDeleteBtn] = useState(false);
   const { user } = useAuth();
   const [profile, setProfile] = useState({});
-  const deleteThisPost = () => {
-    if (window.confirm(`Delete ${postObj.title}?`)) {
-      deletePost(postObj.firebaseKey).then(() => onUpdate());
-    }
-  };
 
   useEffect(() => {
-    const filteredProf = profileObj?.filter((index) => index.uid === postObj.uid);
+    const filteredProf = profileObj?.filter((index) => index?.uid === postObj?.uid);
     const prof = filteredProf.length === 0 ? {} : filteredProf[0];
     setProfile(prof);
   }, [postObj, user.uid]);
@@ -25,18 +21,13 @@ function PostCard({ postObj, onUpdate, profileObj }) {
   return (
     <>
       <Card style={{ width: '18rem', margin: '10px' }}>
-        <Card.Img variant="top" src={profile?.avatar} alt={postObj.title} style={{ height: '400px' }} />
+        <Card.Img variant="top" src={profile?.avatar} alt={postObj?.title} style={{ height: '400px' }} />
         <Card.Body>
-          <Card.Title style={{ color: 'red' }}>{postObj.title}</Card.Title>
+          <Card.Title style={{ color: 'red' }}>{postObj?.title}</Card.Title>
           <h5 className="card-text bold" style={{ color: 'red' }}>Profile: {profile?.username}</h5>
-          <p className="card-text bold" style={{ color: 'red' }}>Text: {postObj.postText}</p>
-          {/* DYNAMIC LINK TO EDIT THE MEMBERS DETAILS  */}
-          <Link href={`/pages/edit/${postObj.firebaseKey}`} passHref>
-            <Button variant="info">EDIT</Button>
-          </Link>
-          <Button variant="danger" onClick={deleteThisPost} className="m-2">
-            DELETE
-          </Button>
+          <p className="card-text bold" style={{ color: 'red' }}>Text: {postObj?.postText}</p>
+          <p className="card-text bold" style={{ color: 'red' }}>Date Posted: {postObj?.postDate}</p>
+          <Buttons postObj={postObj} onUpdate={onUpdate} />
         </Card.Body>
       </Card>
     </>

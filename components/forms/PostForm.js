@@ -14,7 +14,7 @@ const initialState = {
   postDate: '',
   postText: '',
 };
-export default function PostForm({ obj, onUpdate }) {
+export default function PostForm({ obj }) {
   const [show, setShow] = useState(false);
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
@@ -43,7 +43,7 @@ export default function PostForm({ obj, onUpdate }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updatePost(formInput).then(() => {
-        onUpdate();
+        // onUpdate();
         handleClose();
       });
     } else {
@@ -52,7 +52,7 @@ export default function PostForm({ obj, onUpdate }) {
         const patchPayload = { firebaseKey: name };
         updatePost(patchPayload).then(() => {
           router.push('/');
-          onUpdate();
+          // onUpdate();
           setShow(false);
           setFormInput(initialState);
         });
@@ -117,10 +117,10 @@ PostForm.propTypes = {
     postDate: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
-  onUpdate: PropTypes.func,
+  // onUpdate: PropTypes.func,
 };
 
 PostForm.defaultProps = {
   obj: initialState,
-  onUpdate: null,
+  // onUpdate: null,
 };
