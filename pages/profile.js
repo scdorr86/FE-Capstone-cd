@@ -8,16 +8,20 @@ function Profile() {
   const { user } = useAuth(); // TODO: COMMENT IN FOR AUTH
   const theProfile = useFirebaseProfile();
   const [posts, setPosts] = useState([]);
+  const userProfile = [theProfile];
+
+  console.warn('the profile', theProfile, userProfile);
 
   const getPosts = () => {
     getAllPosts().then(setPosts);
   };
 
+  const userPosts = posts.filter((index) => index?.uid === user.uid);
+
   useEffect(() => {
     getPosts();
   }, []);
 
-  console.warn('the profile', theProfile);
   return (
     <>
       <div
@@ -38,8 +42,8 @@ function Profile() {
       <div>
         this will be the landing of posts!
         {/* map over posts using Card component */}
-        {posts.map((post) => (
-          <PostCard key={post?.firebaseKey} profileObj={theProfile} postObj={post} onUpdate={getPosts} />
+        {userPosts.map((post) => (
+          <PostCard key={post?.firebaseKey} profileObj={userProfile} postObj={post} onUpdate={getPosts} />
         ))}
       </div>
     </>

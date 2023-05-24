@@ -89,7 +89,7 @@ export default function PostForm({ obj }) {
             </FloatingLabel>
 
             {/* Post Text  */}
-            <FloatingLabel controlId="floatingInput3" label="Availability" className="mb-3" style={{ color: 'red' }}>
+            <FloatingLabel controlId="floatingInput3" label="Game Session Description" className="mb-3" style={{ color: 'red' }}>
               <Form.Control
                 type="text"
                 placeholder="Post Text"

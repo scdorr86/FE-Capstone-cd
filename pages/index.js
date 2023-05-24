@@ -47,7 +47,7 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    const profileCheck = profiles?.filter((index) => index.uid === user.uid);
+    const profileCheck = profiles?.filter((index) => index?.uid === user?.uid);
     setCheckprof(profileCheck);
   }, [profiles, user.uid]);
 
