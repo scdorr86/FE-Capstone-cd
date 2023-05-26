@@ -31,8 +31,9 @@ function PostCard({ postObj, onUpdate, profileObj }) {
         <Card.Body>
           <Card.Title style={{ color: 'red' }}>{postObj?.title}</Card.Title>
           <h5 className="card-text bold" style={{ color: 'red' }}>Profile: {profile?.username}</h5>
-          <p className="card-text bold" style={{ color: 'red' }}>Text: {postObj?.postText}</p>
-          <p className="card-text bold" style={{ color: 'red' }}>Date Posted: {postObj?.postDate}</p>
+          <p className="card-text bold" style={{ color: 'red' }}>Session Details: {postObj?.postText}</p>
+          <p className="card-text bold" style={{ color: 'red' }}>Day of Session: {postObj?.sessionDay}</p>
+          <p className="card-text bold" style={{ color: 'red' }}>Session Time: {postObj?.sessionTime}</p>
           <Buttons postObj={updatedPost} onUpdate={onUpdate} />
           <AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} />
         </Card.Body>
@@ -45,6 +46,8 @@ PostCard.propTypes = {
   postObj: PropTypes.shape({
     postDate: PropTypes.string,
     postText: PropTypes.string,
+    sessionDay: PropTypes.string,
+    sessionTime: PropTypes.string,
     title: PropTypes.string,
     uid: PropTypes.string,
     firebaseKey: PropTypes.string,
