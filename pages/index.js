@@ -66,7 +66,7 @@ function Home() {
               <PostCard key={post?.firebaseKey} profileObj={profiles} postObj={post} onUpdate={getPosts} />
             ))}
           </div>
-          <PostForm />
+          <PostForm onUpdate={getPosts} />
         </>
       )
         : (

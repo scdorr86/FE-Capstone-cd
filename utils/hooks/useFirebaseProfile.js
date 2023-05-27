@@ -9,7 +9,7 @@ function useFirebaseProfile() {
 
   useEffect(() => {
     console.warn('the userid', user.uid);
-    if (user.uid) {
+    if (user?.uid) {
       const fetchAllProfiles = async () => {
         const profiles = await getAllProfiles();
         const foundProfile = profiles.filter((index) => index.uid === user.uid);

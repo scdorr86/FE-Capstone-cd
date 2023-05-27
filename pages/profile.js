@@ -3,11 +3,14 @@ import { useAuth } from '../utils/context/authContext'; // TODO: COMMENT IN FOR 
 import { getAllPosts } from '../api/postData';
 import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
 import PostCard from '../components/PostsCard';
+import ProfileForm from '../components/forms/ProfileForm';
+import { getSingleProfile } from '../api/profileData';
 
 function Profile() {
   const { user } = useAuth(); // TODO: COMMENT IN FOR AUTH
   const theProfile = useFirebaseProfile();
   const [posts, setPosts] = useState([]);
+  const [profile, setProfile] = useState([]);
   const userProfile = [theProfile];
 
   console.warn('the profile', theProfile, userProfile);
@@ -16,11 +19,16 @@ function Profile() {
     getAllPosts().then(setPosts);
   };
 
+  const getProfile = () => {
+    getSingleProfile(theProfile?.firebaseKey).then(setProfile);
+  };
+
   const userPosts = posts.filter((index) => index?.uid === user.uid);
 
   useEffect(() => {
     getPosts();
-  }, []);
+    getProfile();
+  }, [profile]);
 
   return (
     <>
@@ -35,8 +43,9 @@ function Profile() {
       >
         <h1>Hello {user.displayName}! </h1>
         <p>Profile Page</p>
-        <img src={userProfile[0]?.avatar} alt="avatar" />
-        <p>{userProfile[0]?.username}</p>
+        <img src={profile?.avatar} alt="avatar" />
+        <p>{profile?.username}</p>
+        <ProfileForm obj={theProfile} onUpdate={getProfile} />
       </div>
 
       <div>
