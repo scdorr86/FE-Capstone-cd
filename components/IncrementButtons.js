@@ -1,8 +1,10 @@
 // import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPersonCircleQuestion, faUserCheck, faUserMinus, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPersonCircleQuestion, faUserMinus, faUserPlus,
+} from '@fortawesome/free-solid-svg-icons';
+import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
 
 const AttendBtn = ({ postObj, updatePostHandler }) => {
   const theProfile = useFirebaseProfile();
