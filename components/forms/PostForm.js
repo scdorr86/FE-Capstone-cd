@@ -127,6 +127,7 @@ export default function PostForm({ obj, onUpdate }) {
                 <option value="Afternoon (Noon - 5pm)" style={{ color: 'black' }}>Afternoons (Noon - 5pm)</option>
                 <option value="Evening (5pm - 9pm)" style={{ color: 'black' }}>Evening (5pm - 9pm)</option>
                 <option value="Night (9pm - Midnight)" style={{ color: 'black' }}>Night (9pm - Midnight)</option>
+                <option value="Varies" style={{ color: 'black' }}>Varies</option>
               </Form.Select>
             </FloatingLabel>
 

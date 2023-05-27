@@ -13,7 +13,10 @@ const initialState = {
   games: '',
   consoles: '',
   username: '',
-  availability: '',
+  gamertags: '',
+  generalAvailability: '',
+  PreferredGameTimes: '',
+
 };
 export default function ProfileForm({ obj, onUpdate }) {
   const [show, setShow] = useState(false);
@@ -22,12 +25,11 @@ export default function ProfileForm({ obj, onUpdate }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (obj.firebaseKey) setFormInput(obj);
+    if (obj?.firebaseKey) setFormInput(obj);
   }, [obj, user]);
 
   const handleClose = () => {
     setShow(false);
-    router.push('/');
   };
 
   const handleShow = () => setShow(true);
@@ -42,8 +44,9 @@ export default function ProfileForm({ obj, onUpdate }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.firebaseKey) {
+    if (obj?.firebaseKey) {
       updateProfile(formInput).then(() => {
+        router.push('/profile');
         onUpdate();
         handleClose();
       });
@@ -68,12 +71,12 @@ export default function ProfileForm({ obj, onUpdate }) {
         className="modalForm"
         onClick={handleShow}
       >
-        {obj.firebaseKey ? 'Update Profile' : 'Create Profile'}
+        {obj?.firebaseKey ? 'Update Profile' : 'Create Profile'}
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{obj.firebaseKey ? 'Update' : 'Create'} Profile</Modal.Title>
+          <Modal.Title>{obj?.firebaseKey ? 'Update' : 'Create'} Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
@@ -89,13 +92,13 @@ export default function ProfileForm({ obj, onUpdate }) {
               />
             </FloatingLabel>
 
-            {/* Profile Availability  */}
-            <FloatingLabel controlId="floatingInput3" label="Availability" className="mb-3" style={{ color: 'red' }}>
+            {/* Gamertags  */}
+            <FloatingLabel controlId="floatingInput3" label="gamertags" className="mb-3" style={{ color: 'red' }}>
               <Form.Control
                 type="text"
-                placeholder="General Availability"
-                name="availability"
-                value={formInput.availablity}
+                placeholder="gamertags"
+                name="gamertags"
+                value={formInput.gamertags}
                 onChange={handleChange}
                 required
               />
@@ -137,7 +140,45 @@ export default function ProfileForm({ obj, onUpdate }) {
               />
             </FloatingLabel>
 
-            <Button type="submit">{obj.firebaseKey ? 'Update' : 'Submit'}</Button>
+            {/* General Availability Select  */}
+            <FloatingLabel controlId="floatingInput1" label="General Availability" className="mb-3" style={{ color: 'red' }}>
+              <Form.Select
+                type="text"
+                placeholder="General Availability"
+                name="generalAvailability"
+                value={formInput.generalAvailability}
+                onChange={handleChange}
+                required
+              >
+                <option>General Availability</option>
+                <option value="Weekdays" style={{ color: 'black' }}>Weekdays</option>
+                <option value="Weeknights" style={{ color: 'black' }}>Weeknights</option>
+                <option value="Weekends" style={{ color: 'black' }}>Weekends</option>
+                <option value="All" style={{ color: 'black' }}>All</option>
+                <option value="Varies" style={{ color: 'black' }}>Varies</option>
+              </Form.Select>
+            </FloatingLabel>
+
+            {/* Preferred Times Select  */}
+            <FloatingLabel controlId="floatingInput1" label="Preferred Session Times" className="mb-3" style={{ color: 'red' }}>
+              <Form.Select
+                type="text"
+                placeholder="Preferred Session Times"
+                name="PreferredGameTimes"
+                value={formInput.PreferredGameTimes}
+                onChange={handleChange}
+                required
+              >
+                <option>General Availability</option>
+                <option value="Mornings (AMs before Noon)" style={{ color: 'black' }}>Mornings (AMs before Noon) </option>
+                <option value="Afternoons (Noon - 5pm)" style={{ color: 'black' }}>Afternoons (Noon - 5pm)</option>
+                <option value="Evening (5pm - 9pm)" style={{ color: 'black' }}>Evening (5pm - 9pm)</option>
+                <option value="Night (9pm - Midnight)" style={{ color: 'black' }}>Night (9pm - Midnight)</option>
+                <option value="Varies" style={{ color: 'black' }}>Varies</option>
+              </Form.Select>
+            </FloatingLabel>
+
+            <Button type="submit">{obj?.firebaseKey ? 'Update' : 'Submit'}</Button>
           </Form>
         </Modal.Body>
         <Modal.Footer />
@@ -148,14 +189,14 @@ export default function ProfileForm({ obj, onUpdate }) {
 
 ProfileForm.propTypes = {
   obj: PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string,
-    video_id: PropTypes.string,
-    category: PropTypes.string,
-    thumbnail: PropTypes.string,
+    avatar: PropTypes.string,
+    games: PropTypes.string,
+    consoles: PropTypes.string,
+    generalAvailability: PropTypes.string,
+    gamertags: PropTypes.string,
     firebaseKey: PropTypes.string,
-    user_photo: PropTypes.string,
-    userName: PropTypes.string,
+    PreferredGameTimes: PropTypes.string,
+    username: PropTypes.string,
   }),
   onUpdate: PropTypes.func,
 };

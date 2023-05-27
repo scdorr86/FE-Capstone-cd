@@ -5,6 +5,7 @@ import {
   Navbar, Container, Nav, Button,
 } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
+import ProfileForm from './forms/ProfileForm';
 
 export default function NavBarAuth() {
   return (
@@ -20,6 +21,7 @@ export default function NavBarAuth() {
             <Link passHref href="/">
               <Nav.Link>Postings</Nav.Link>
             </Link>
+            <ProfileForm />
             <Button variant="danger" onClick={signOut}>Sign Out</Button>
           </Nav>
         </Navbar.Collapse>
