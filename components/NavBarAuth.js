@@ -22,7 +22,7 @@ export default function NavBarAuth() {
               <Nav.Link>Postings</Nav.Link>
             </Link>
             <ProfileForm />
-            <Button variant="danger" onClick={signOut}>Sign Out</Button>
+            <Button className="modalForm bg-transparent border-0" onClick={signOut}>Sign Out</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>

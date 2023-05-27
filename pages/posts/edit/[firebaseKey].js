@@ -7,7 +7,7 @@ export default function EditPost() {
   const [editPost, setEditPost] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
-  console.warn('dynamic route', firebaseKey, router);
+  // console.warn('dynamic route', firebaseKey, router);
 
   useEffect(() => {
     getSinglePost(firebaseKey).then(setEditPost);

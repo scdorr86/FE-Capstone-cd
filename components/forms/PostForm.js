@@ -50,7 +50,9 @@ export default function PostForm({ obj, onUpdate }) {
         handleClose();
       });
     } else {
-      const payload = { ...formInput, uid: user.uid, dateOfPost: new Date(Date.now()) };
+      const payload = {
+        ...formInput, uid: user.uid, attending: 0, notAttending: 0, maybe: 0, dateOfPost: new Date(Date.now()),
+      };
       createPost(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updatePost(patchPayload).then(() => {

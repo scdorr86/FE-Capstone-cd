@@ -18,10 +18,13 @@ a {
 }
 
 body {
-  background-color: #88effd;
+  background-color: grey;
 }
 
 .rsvpBtns {
   display:flex;
   flex-wrap: wrap;
+}
+th {
+  text-align: center;
 }
