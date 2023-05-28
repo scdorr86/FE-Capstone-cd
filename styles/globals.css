@@ -28,3 +28,7 @@ body {
 th {
   text-align: center;
 }
+.tables {
+  display: flex;
+  flex-direction: row;
+}

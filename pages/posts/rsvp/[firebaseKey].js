@@ -9,33 +9,73 @@ export default function PostRsvp() {
   const [profile, setProfile] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
-  console.warn('dynamic route', firebaseKey, router, post);
+  // getSinglePost(firebaseKey).then((data) => setPost(data)).then(console.log('effect post', post));
 
   useEffect(() => {
-    getSinglePost(firebaseKey).then(setPost);
-    getAllProfiles().then((data) => data?.filter((index) => index?.uid === post.uid)).then(setProfile);
+    getSinglePost(firebaseKey).then((data) => setPost(data));
+    getAllProfiles().then((data) => data?.filter((index) => index?.uid === post?.uid)).then(setProfile);
   }, [firebaseKey]);
 
-  console.log('table profile obj', profile, post);
+  // getAllProfiles().then((data) => console.log('this is the', data));
+  // console.log('dynamic route', firebaseKey, router, post);
+  // console.log('dynamic post', post);
+  // console.log('get post', getSinglePost(firebaseKey));
+
+  // console.log('table profile obj', profile);
+  // console.log('post map', post?.attendingNames);
 
   return (
-    <Table striped="columns">
-      <thead>
-        <tr>
-          <th colSpan={1} style={{ color: 'red' }}><img style={{ height: '150px' }} src={profile?.avatar} alt="" />{post?.title}</th>
-        </tr>
-        <tr>
-          <th>Joining Session</th>
-        </tr>
-      </thead>
-      <tbody>
-        {post?.attendingNames.map((index) => (
-          <tr>
-            <td>{index.attendingNames}</td>
-          </tr>
-        ))};
+    <>
+      <div>
+        <img style={{ height: '150px' }} src={profile?.avatar} alt="avatar here" />
+        <h2 style={{ color: 'red' }}>{post?.title}</h2>
+      </div>
+      <div className="tables">
+        <Table striped>
+          <thead>
+            <tr>
+              <th>Attending Session</th>
+            </tr>
+          </thead>
+          <tbody>
+            {post?.attendingNames.map((index) => (
+              <tr>
+                <td>{index}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
 
-      </tbody>
-    </Table>
+        <Table striped>
+          <thead>
+            <tr>
+              <th>Not Attending</th>
+            </tr>
+          </thead>
+          <tbody>
+            {post?.NotAttendingNames.map((index) => (
+              <tr>
+                <td>{index}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+
+        <Table striped>
+          <thead>
+            <tr>
+              <th>Possible Attendees</th>
+            </tr>
+          </thead>
+          <tbody>
+            {post?.maybeNames.map((index) => (
+              <tr>
+                <td>{index}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    </>
   );
 }
