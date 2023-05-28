@@ -60,7 +60,6 @@ function Home() {
       theProfile !== null ? (
         <>
           <div className="d-flex flex-wrap">
-            this will be the landing of posts!
             {/* map over posts using Card component */}
             {posts.map((post) => (
               <PostCard key={post?.firebaseKey} profileObj={profiles} postObj={post} onUpdate={getPosts} />

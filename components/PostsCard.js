@@ -27,6 +27,21 @@ function PostCard({ postObj, onUpdate, profileObj }) {
 
   return (
     <>
+      <div className="flip-card">
+        <div className="flip-card-inner">
+          <div className="flip-card-front">
+            <p className="title">{postObj?.title}</p>
+            <p>{profile?.username}</p>
+            <p>Session Details: {postObj?.postText}</p>
+          </div>
+          <div className="flip-card-back">
+            <p className="title">{profile?.username}</p>
+            <p>Leave Me</p>
+            <img src={profile?.avatar} alt="avatar" />
+          </div>
+        </div>
+      </div>
+
       <Card style={{ width: '18rem', margin: '10px' }}>
         <Card.Img variant="top" src={profile?.avatar} alt={postObj?.title} style={{ height: '150px' }} />
         <Card.Body>
