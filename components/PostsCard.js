@@ -30,14 +30,19 @@ function PostCard({ postObj, onUpdate, profileObj }) {
       <div className="flip-card">
         <div className="flip-card-inner">
           <div className="flip-card-front">
-            <p className="title">{postObj?.title}</p>
-            <p>{profile?.username}</p>
-            <p>Session Details: {postObj?.postText}</p>
+            <img height="150px" src={profile?.avatar} alt="avatar" />
+            <h5>{profile?.username}</h5>
+            <p>{profile?.gamertags}</p>
+            
           </div>
           <div className="flip-card-back">
-            <p className="title">{profile?.username}</p>
-            <p>Leave Me</p>
-            <img src={profile?.avatar} alt="avatar" />
+            <p className="title">{postObj?.title}</p>
+            <p>Day of Week: {postObj?.sessionDay}</p>
+            <p>Approximate Time: {postObj?.sessionTime}</p>
+            <p>Details: {postObj?.postText}</p>
+            <Buttons postObj={updatedPost} onUpdate={onUpdate} />
+            <p>RSVP:<AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} /></p>
+            <RsvpBtn postObj={updatedPost} />
           </div>
         </div>
       </div>

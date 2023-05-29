@@ -13,7 +13,7 @@ export default function PostRsvp() {
 
   useEffect(() => {
     getSinglePost(firebaseKey).then((data) => setPost(data));
-    getAllProfiles().then((data) => data?.filter((index) => index?.uid === post?.uid)).then(setProfile);
+    getAllProfiles().then((data) => data.filter((index) => index.uid === post.uid)).then(setProfile);
   }, [firebaseKey]);
 
   // getAllProfiles().then((data) => console.log('this is the', data));

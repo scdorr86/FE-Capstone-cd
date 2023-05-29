@@ -22,9 +22,9 @@ function Buttons({ postObj, onUpdate }) {
 
         <>
           <Link href={`/posts/edit/${postObj?.firebaseKey}`} passHref>
-            <Button variant="info" size="sm" onClick={console.warn('this is the', postObj.firebaseKey)}>EDIT</Button>
+            <Button className="border-0" variant="dark" size="xs" onClick={console.warn('this is the', postObj.firebaseKey)}>EDIT</Button>
           </Link>
-          <Button variant="danger" size="sm" onClick={deleteThisPost} className="m-2">
+          <Button className="bg-transparent border-0" variant="danger" size="sm" onClick={deleteThisPost} className="m-2">
             DELETE
           </Button>
         </>
