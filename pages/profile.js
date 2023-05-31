@@ -48,7 +48,7 @@ function Profile() {
         <ProfileForm obj={theProfile} onUpdate={getProfile} />
       </div>
 
-      <div>
+      <div className="d-flex flex-wrap">
         this will be the landing of posts!
         {/* map over posts using Card component */}
         {userPosts.map((post) => (

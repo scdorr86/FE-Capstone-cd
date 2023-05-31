@@ -21,12 +21,14 @@ function Buttons({ postObj, onUpdate }) {
       theProfile?.uid === postObj.uid ? (
 
         <>
-          <Link href={`/posts/edit/${postObj?.firebaseKey}`} passHref>
-            <Button variant="info" onClick={console.warn('this is the', postObj.firebaseKey)}>EDIT</Button>
-          </Link>
-          <Button variant="danger" onClick={deleteThisPost} className="m-2">
-            DELETE
-          </Button>
+          <div className="d-flex flex-wrap">
+            <Link href={`/posts/edit/${postObj?.firebaseKey}`} passHref>
+              <Button className="border-0 w-25 mx-sm-auto" variant="dark" size="sm" onClick={console.warn('this is the', postObj.firebaseKey)}>EDIT</Button>
+            </Link>
+            <Button className="m-2 w-25 mx-sm-auto text-black-75 btn-sm" variant="light" size="xs" onClick={deleteThisPost}>
+              DELETE
+            </Button>
+          </div>
         </>
 
       )

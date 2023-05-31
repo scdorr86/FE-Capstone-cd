@@ -67,8 +67,7 @@ export default function ProfileForm({ obj, onUpdate }) {
   return (
     <>
       <Button
-        variant="primary"
-        className="modalForm"
+        className="modalForm bg-dark border-0"
         onClick={handleShow}
       >
         {obj?.firebaseKey ? 'Update Profile' : 'Create Profile'}

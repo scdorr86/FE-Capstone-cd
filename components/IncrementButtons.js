@@ -1,8 +1,10 @@
 // import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faPersonCircleQuestion, faUserMinus, faUserPlus,
+} from '@fortawesome/free-solid-svg-icons';
 import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
-// import { faUserCheck } from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from 'fortawesome/react-fontawesome';
 
 const AttendBtn = ({ postObj, updatePostHandler }) => {
   const theProfile = useFirebaseProfile();
@@ -39,15 +41,16 @@ const AttendBtn = ({ postObj, updatePostHandler }) => {
   };
   return (
     <>
-      <div className="rsvpBtns">
+      <div className="d-flex w-75 mx-auto">
+        <p>RSVP:</p>
         <div>
-          <button className="likesButton" type="button" onClick={addAttend}>Joining: {postObj.attending ? postObj.attending : 0}</button>
+          <button className="bg-transparent border-0 me-1 pe-1" type="button" onClick={addAttend}><FontAwesomeIcon className="pe-2" icon={faUserPlus} />{postObj.attending ? postObj.attending : 0}</button>
         </div>
         <div>
-          <button className="likesButton" type="button" onClick={addNot}>Not Joining: {postObj.notAttending ? postObj.notAttending : 0} </button>
+          <button className="bg-transparent border-0 me-1 pe-1" type="button" onClick={addNot}><FontAwesomeIcon className="pe-2" icon={faUserMinus} />{postObj.notAttending ? postObj.notAttending : 0} </button>
         </div>
         <div>
-          <button className="likesButton" type="button" onClick={addMaybe}>Maybe: {postObj.maybe ? postObj.maybe : 0}</button>
+          <button className="bg-transparent border-0 pe-1" type="button" onClick={addMaybe}><FontAwesomeIcon className="pe-2" icon={faPersonCircleQuestion} />{postObj.maybe ? postObj.maybe : 0}</button>
         </div>
       </div>
     </>

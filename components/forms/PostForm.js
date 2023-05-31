@@ -46,11 +46,13 @@ export default function PostForm({ obj, onUpdate }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updatePost(formInput).then(() => {
-        onUpdate();
+        router.push('/');
         handleClose();
       });
     } else {
-      const payload = { ...formInput, uid: user.uid, dateOfPost: new Date(Date.now()) };
+      const payload = {
+        ...formInput, uid: user.uid, attending: 0, notAttending: 0, maybe: 0, dateOfPost: new Date(Date.now()),
+      };
       createPost(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updatePost(patchPayload).then(() => {
@@ -66,7 +68,7 @@ export default function PostForm({ obj, onUpdate }) {
   return (
     <>
       <Button
-        variant="primary"
+        variant="light"
         className="modalForm"
         onClick={handleShow}
       >

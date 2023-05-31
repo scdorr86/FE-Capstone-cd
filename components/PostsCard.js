@@ -8,6 +8,7 @@ import { useAuth } from '../utils/context/authContext';
 import Buttons from './UserButtons';
 import { updatePost } from '../api/postData';
 import AttendBtn from './IncrementButtons';
+import RsvpBtn from './RsvpBtn';
 
 function PostCard({ postObj, onUpdate, profileObj }) {
   const { user } = useAuth();
@@ -26,16 +27,37 @@ function PostCard({ postObj, onUpdate, profileObj }) {
 
   return (
     <>
+      <div className="flip-card">
+        <div className="flip-card-inner">
+          <div className="flip-card-front">
+            <img height="150px" src={profile?.avatar} alt="avatar" />
+            <h5>{profile?.username}</h5>
+            <p>{profile?.gamertags}</p>
+
+          </div>
+          <div className="flip-card-back">
+            <p className="title">{postObj?.title}</p>
+            <p>Day of Week: {postObj?.sessionDay}</p>
+            <p>Approximate Time: {postObj?.sessionTime}</p>
+            <p>Details: {postObj?.postText}</p>
+            <Buttons postObj={updatedPost} onUpdate={onUpdate} />
+            <p><AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} /></p>
+            <RsvpBtn postObj={updatedPost} />
+          </div>
+        </div>
+      </div>
+
       <Card style={{ width: '18rem', margin: '10px' }}>
-        <Card.Img variant="top" src={profile?.avatar} alt={postObj?.title} style={{ height: '200px' }} />
+        <Card.Img variant="top" src={profile?.avatar} alt={postObj?.title} style={{ height: '150px' }} />
         <Card.Body>
-          <Card.Title style={{ color: 'red' }}>{postObj?.title}</Card.Title>
-          <h5 className="card-text bold" style={{ color: 'red' }}>Profile: {profile?.username}</h5>
+          <Card.Title style={{ color: 'red' }}>Game Session: {postObj?.title}</Card.Title>
+          <h6 className="card-text bold" style={{ color: 'black' }}>Profile: {profile?.username}</h6>
           <p className="card-text bold" style={{ color: 'red' }}>Session Details: {postObj?.postText}</p>
           <p className="card-text bold" style={{ color: 'red' }}>Day of Session: {postObj?.sessionDay}</p>
           <p className="card-text bold" style={{ color: 'red' }}>Session Time: {postObj?.sessionTime}</p>
           <Buttons postObj={updatedPost} onUpdate={onUpdate} />
           <AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} />
+          <RsvpBtn postObj={updatedPost} />
         </Card.Body>
       </Card>
     </>
