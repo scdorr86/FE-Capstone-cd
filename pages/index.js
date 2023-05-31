@@ -55,7 +55,6 @@ function Home({ searchInput }) {
   const searchedPosts = posts?.filter((index) => index?.title.toLowerCase().includes(searchInput)
   || index?.sessionDay?.toLowerCase().includes(searchInput)
   || index?.sessionTime?.toLowerCase().includes(searchInput)
-  || index?.attendingNames?.toLowerCase().includes(searchInput)
   || index?.postText?.toLowerCase().includes(searchInput));
 
   // || index?.NotAttendingNames?.toLowerCase().includes(searchInput)
