@@ -62,10 +62,23 @@ const deleteComment = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getCommentsByPostId = (postId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/comments.json?orderBy="postId"&equalTo="${postId}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 export {
   deleteComment,
   updateComment,
   createComment,
   getAllComments,
   getSingleComment,
+  getCommentsByPostId,
 };

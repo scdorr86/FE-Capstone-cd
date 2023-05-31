@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { getSinglePost } from '../../../api/postData';
 import { getAllProfiles } from '../../../api/profileData';
+import CommentForm from '../../../components/forms/CommentForm';
 
 export default function PostRsvp() {
   const [post, setPost] = useState({});
@@ -26,21 +27,21 @@ export default function PostRsvp() {
 
   return (
     <>
-      <div>
-        <img style={{ height: '150px' }} src={profile?.avatar} alt="avatar here" />
-        <h2 style={{ color: 'red' }}>{post?.title}</h2>
+      <div className="post-details">
+        <img className="avatar" src={profile?.avatar} alt="avatar here" />
+        <h2 className="title">Game Session: {post?.title}</h2>
       </div>
       <div className="tables">
         <Table striped>
           <thead>
             <tr>
-              <th>Attending Session</th>
+              <th className="table-header">Attending Session</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table-body">
             {post?.attendingNames?.map((index) => (
-              <tr>
-                <td>{index}</td>
+              <tr key={index}>
+                <td className="table-cell">{index}</td>
               </tr>
             ))}
           </tbody>
@@ -49,13 +50,13 @@ export default function PostRsvp() {
         <Table striped>
           <thead>
             <tr>
-              <th>Not Attending</th>
+              <th className="table-header">Not Attending</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table-body">
             {post?.NotAttendingNames?.map((index) => (
-              <tr>
-                <td>{index}</td>
+              <tr key={index}>
+                <td className="table-cell">{index}</td>
               </tr>
             ))}
           </tbody>
@@ -64,18 +65,19 @@ export default function PostRsvp() {
         <Table striped>
           <thead>
             <tr>
-              <th>Possible Attendees</th>
+              <th className="table-header">Possible Attendees</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table-body">
             {post?.maybeNames?.map((index) => (
-              <tr>
-                <td>{index}</td>
+              <tr key={index}>
+                <td className="table-cell">{index}</td>
               </tr>
             ))}
           </tbody>
         </Table>
       </div>
+      <CommentForm />
     </>
   );
 }
