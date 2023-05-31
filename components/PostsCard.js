@@ -33,7 +33,7 @@ function PostCard({ postObj, onUpdate, profileObj }) {
             <img height="150px" src={profile?.avatar} alt="avatar" />
             <h5>{profile?.username}</h5>
             <p>{profile?.gamertags}</p>
-            
+
           </div>
           <div className="flip-card-back">
             <p className="title">{postObj?.title}</p>
@@ -41,7 +41,7 @@ function PostCard({ postObj, onUpdate, profileObj }) {
             <p>Approximate Time: {postObj?.sessionTime}</p>
             <p>Details: {postObj?.postText}</p>
             <Buttons postObj={updatedPost} onUpdate={onUpdate} />
-            <p>RSVP:<AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} /></p>
+            <p><AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} /></p>
             <RsvpBtn postObj={updatedPost} />
           </div>
         </div>
@@ -56,7 +56,7 @@ function PostCard({ postObj, onUpdate, profileObj }) {
           <p className="card-text bold" style={{ color: 'red' }}>Day of Session: {postObj?.sessionDay}</p>
           <p className="card-text bold" style={{ color: 'red' }}>Session Time: {postObj?.sessionTime}</p>
           <Buttons postObj={updatedPost} onUpdate={onUpdate} />
-          RSVP:<AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} />
+          <AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} />
           <RsvpBtn postObj={updatedPost} />
         </Card.Body>
       </Card>

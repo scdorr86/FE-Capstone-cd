@@ -1,22 +1,39 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
+// import { useRouter } from 'next/router';
+// import Link from 'next/link';
 import {
   Navbar, Container, Nav, Button,
 } from 'react-bootstrap';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import PropTypes from 'prop-types';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Form from 'react-bootstrap/Form';
 import { signOut } from '../utils/auth';
 import ProfileForm from './forms/ProfileForm';
+import { getAllPosts } from '../api/postData';
+import PostForm from './forms/PostForm';
 
-export default function NavBarAuth() {
+export default function NavBarAuth({ searchInput, setSearchInput }) {
+  // const router = useRouter();
+  const [posts, setPosts] = useState([]);
+  const getPosts = () => {
+    getAllPosts().then(setPosts);
+  };
+
+  console.log(posts);
+
+  const handleChange = (e) => {
+    setSearchInput(e.target.value.toLowerCase());
+  };
+
   return (
     <>
       {[false].map((expand) => (
         <Navbar key={expand} bg="light" expand={false} className="mb-3">
           <Container fluid>
             <Navbar.Brand href="/">GameRsvp</Navbar.Brand>
+            <PostForm onUpdate={getPosts} />
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -55,8 +72,10 @@ export default function NavBarAuth() {
                     placeholder="Search"
                     className="me-2"
                     aria-label="Search"
+                    value={searchInput}
+                    onChange={handleChange}
                   />
-                  <Button variant="outline-success">Search</Button>
+                  <Button variant="outline-dark">Search</Button>
                 </Form>
                 <ProfileForm />
                 <Button className="modalForm bg-dark border-0" onClick={signOut}>Sign Out</Button>
@@ -87,3 +106,13 @@ export default function NavBarAuth() {
   // </Navbar>
   );
 }
+
+NavBarAuth.propTypes = {
+  searchInput: PropTypes.string,
+  setSearchInput: PropTypes.string,
+};
+
+NavBarAuth.defaultProps = {
+  searchInput: '',
+  setSearchInput: '',
+};

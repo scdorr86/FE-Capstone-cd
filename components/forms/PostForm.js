@@ -46,7 +46,7 @@ export default function PostForm({ obj, onUpdate }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updatePost(formInput).then(() => {
-        onUpdate();
+        router.push('/');
         handleClose();
       });
     } else {
@@ -68,7 +68,7 @@ export default function PostForm({ obj, onUpdate }) {
   return (
     <>
       <Button
-        variant="primary"
+        variant="light"
         className="modalForm"
         onClick={handleShow}
       >

@@ -41,7 +41,8 @@ const AttendBtn = ({ postObj, updatePostHandler }) => {
   };
   return (
     <>
-      <div className="rsvpBtns">
+      <div className="d-flex w-75 mx-auto">
+        <p>RSVP:</p>
         <div>
           <button className="bg-transparent border-0 me-1 pe-1" type="button" onClick={addAttend}><FontAwesomeIcon className="pe-2" icon={faUserPlus} />{postObj.attending ? postObj.attending : 0}</button>
         </div>

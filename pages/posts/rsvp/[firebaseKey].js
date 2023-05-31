@@ -12,8 +12,8 @@ export default function PostRsvp() {
   // getSinglePost(firebaseKey).then((data) => setPost(data)).then(console.log('effect post', post));
 
   useEffect(() => {
-    getSinglePost(firebaseKey).then((data) => setPost(data));
-    getAllProfiles().then((data) => data.filter((index) => index.uid === post.uid)).then(setProfile);
+    getSinglePost(firebaseKey)?.then((data) => setPost(data));
+    getAllProfiles()?.then((data) => data?.filter((index) => index?.uid === post?.uid))?.then(setProfile);
   }, [firebaseKey]);
 
   // getAllProfiles().then((data) => console.log('this is the', data));
@@ -38,7 +38,7 @@ export default function PostRsvp() {
             </tr>
           </thead>
           <tbody>
-            {post?.attendingNames.map((index) => (
+            {post?.attendingNames?.map((index) => (
               <tr>
                 <td>{index}</td>
               </tr>
@@ -53,7 +53,7 @@ export default function PostRsvp() {
             </tr>
           </thead>
           <tbody>
-            {post?.NotAttendingNames.map((index) => (
+            {post?.NotAttendingNames?.map((index) => (
               <tr>
                 <td>{index}</td>
               </tr>
@@ -68,7 +68,7 @@ export default function PostRsvp() {
             </tr>
           </thead>
           <tbody>
-            {post?.maybeNames.map((index) => (
+            {post?.maybeNames?.map((index) => (
               <tr>
                 <td>{index}</td>
               </tr>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { getAllProfiles, getSingleProfile } from '../api/profileData';
 import { getAllComments } from '../api/commentData';
 import { getAllPosts } from '../api/postData';
@@ -8,7 +9,7 @@ import ProfileForm from '../components/forms/ProfileForm';
 import PostCard from '../components/PostsCard';
 import PostForm from '../components/forms/PostForm';
 
-function Home() {
+function Home({ searchInput }) {
   const { user } = useAuth(); // TODO: COMMENT IN FOR AUTH
   const theProfile = useFirebaseProfile();
   const [profiles, setProfiles] = useState([]);
@@ -23,11 +24,11 @@ function Home() {
   console.warn('Hook result', theProfile);
 
   const getProfiles = () => {
-    getAllProfiles().then(setProfiles);
+    getAllProfiles()?.then(setProfiles);
   };
 
   const getUserProfile = () => {
-    getSingleProfile(user.uid).then(setProfile);
+    getSingleProfile(user.uid)?.then(setProfile);
   };
 
   const getPosts = () => {
@@ -51,7 +52,16 @@ function Home() {
     setCheckprof(profileCheck);
   }, [profiles, user.uid]);
 
-  // const user = { displayName: 'Dr. T' }; // TODO: COMMENT OUT FOR AUTH
+  const searchedPosts = posts?.filter((index) => index?.title.toLowerCase().includes(searchInput)
+  || index?.sessionDay?.toLowerCase().includes(searchInput)
+  || index?.sessionTime?.toLowerCase().includes(searchInput)
+  || index?.attendingNames?.toLowerCase().includes(searchInput)
+  || index?.postText?.toLowerCase().includes(searchInput));
+
+  // || index?.NotAttendingNames?.toLowerCase().includes(searchInput)
+  // || index?.attendingNames?.toLowerCase().includes(searchInput)
+  // || index?.maybeNames?.toLowerCase().includes(searchInput)
+
   console.warn('these are the gets', getAllComments(), getAllPosts(), getAllProfiles());
 
   return (
@@ -59,20 +69,21 @@ function Home() {
       {
       theProfile !== null ? (
         <>
+          <title>Cameron Dorris</title>
+
+          <PostForm onUpdate={getPosts} />
           <div className="d-flex flex-wrap">
             {/* map over posts using Card component */}
-            {posts.map((post) => (
+            {searchedPosts?.map((post) => (
               <PostCard key={post?.firebaseKey} profileObj={profiles} postObj={post} onUpdate={getPosts} />
             ))}
           </div>
-          <PostForm onUpdate={getPosts} />
         </>
       )
         : (
           <>
             <div>
               <ProfileForm />
-              <PostForm />
             </div>
             <div
               className="text-center d-flex flex-column justify-content-center align-content-center"
@@ -94,3 +105,11 @@ function Home() {
 }
 
 export default Home;
+
+Home.propTypes = {
+  searchInput: PropTypes.string,
+};
+
+Home.defaultProps = {
+  searchInput: '',
+};
