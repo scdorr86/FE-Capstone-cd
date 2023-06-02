@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table';
 import { getSinglePost } from '../../../api/postData';
 import { getAllProfiles } from '../../../api/profileData';
 import CommentForm from '../../../components/forms/CommentForm';
+import { getCommentsByPostId } from '../../../api/commentData';
 
 export default function PostRsvp() {
   const [post, setPost] = useState({});
@@ -11,6 +12,8 @@ export default function PostRsvp() {
   const router = useRouter();
   const { firebaseKey } = router.query;
   // getSinglePost(firebaseKey).then((data) => setPost(data)).then(console.log('effect post', post));
+
+  const getPostComments = () => { getCommentsByPostId(firebaseKey).then(); };
 
   useEffect(() => {
     getSinglePost(firebaseKey)?.then((data) => setPost(data));
@@ -77,7 +80,10 @@ export default function PostRsvp() {
           </tbody>
         </Table>
       </div>
-      <CommentForm />
+      <span>Comments</span>
+      <div>
+        <CommentForm postId={firebaseKey} onUpdate={getPostComments} />
+      </div>
     </>
   );
 }

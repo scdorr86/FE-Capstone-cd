@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getAllProfiles, getSingleProfile } from '../api/profileData';
-import { getAllComments } from '../api/commentData';
+// import { getAllComments } from '../api/commentData';
 import { getAllPosts } from '../api/postData';
 import { useAuth } from '../utils/context/authContext'; // TODO: COMMENT IN FOR AUTH
 import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
@@ -57,11 +57,11 @@ function Home({ searchInput }) {
   || index?.sessionTime?.toLowerCase().includes(searchInput)
   || index?.postText?.toLowerCase().includes(searchInput));
 
-  // || index?.NotAttendingNames?.toLowerCase().includes(searchInput)
+  // || index?.NotAttendingNames?.includes(searchInput)
   // || index?.attendingNames?.toLowerCase().includes(searchInput)
   // || index?.maybeNames?.toLowerCase().includes(searchInput)
 
-  console.warn('these are the gets', getAllComments(), getAllPosts(), getAllProfiles());
+  // console.warn('these are the gets', getAllComments(), getAllPosts(), getAllProfiles());
 
   return (
     <>

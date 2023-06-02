@@ -5,6 +5,7 @@ import { useAuth } from '../../utils/context/authContext';
 import useFirebaseProfile from '../../utils/hooks/useFirebaseProfile';
 import Comments from '../Comments';
 import { createComment, getCommentsByPostId, updateComment } from '../../api/commentData';
+import { getAllProfiles } from '../../api/profileData';
 
 const initialState = {
   commentText: '',
@@ -15,6 +16,7 @@ export default function CommentForm({ postId, onUpdate }) {
   const { user } = useAuth();
   const [comments, setComments] = useState();
   const theProfile = useFirebaseProfile();
+  const [profiles, setProfiles] = useState({});
 
   useEffect(() => {
     getCommentsByPostId(postId).then(setComments);
@@ -31,7 +33,7 @@ export default function CommentForm({ postId, onUpdate }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = {
-      ...formInput, userName: theProfile.userName, commentDate: new Date(Date.now()), postId,
+      ...formInput, userName: theProfile.username, commentDate: new Date(Date.now()), postId, profileID: theProfile.firebaseKey,
     };
     createComment(payload).then(({ name }) => {
       const patchPayload = { firebaseKey: name };
@@ -41,6 +43,12 @@ export default function CommentForm({ postId, onUpdate }) {
     });
     getCommentsByPostId(postId).then(setComments);
   };
+
+  const getProfiles = () => {
+    getAllProfiles()?.then(setProfiles);
+  };
+
+  console.log('test', getProfiles);
 
   return (
     <>
@@ -79,7 +87,7 @@ export default function CommentForm({ postId, onUpdate }) {
         </>
       ) : (
         <div className="list-comments">
-          {comments?.map((comment) => <Comments commObj={comment} videoId={comment.video_id} />)}
+          {comments?.map((comment) => <Comments commObj={comment} profileObj={profiles} />)}
         </div>
       )}
     </>
