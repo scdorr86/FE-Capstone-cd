@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Card, Form } from 'react-bootstrap';
+import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../utils/context/authContext';
 import useFirebaseProfile from '../../utils/hooks/useFirebaseProfile';
 import Comments from '../Comments';
@@ -33,7 +35,7 @@ export default function CommentForm({ postId, onUpdate }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = {
-      ...formInput, userName: theProfile.username, commentDate: new Date(Date.now()), postId, profileID: theProfile.firebaseKey,
+      ...formInput, userName: theProfile.username, commentDate: new Date(Date.now()), postId, profileID: theProfile.firebaseKey, commentAvatar: theProfile.avatar,
     };
     createComment(payload).then(({ name }) => {
       const patchPayload = { firebaseKey: name };
@@ -76,7 +78,7 @@ export default function CommentForm({ postId, onUpdate }) {
                   style={{
                     borderRadius: '30px', height: '40px', fontWeight: '600', color: 'orange',
                   }}
-                >Comment
+                >Comment <FontAwesomeIcon className="pe-2" icon={faComment} />
                 </Button>
               </div>
             </Form>

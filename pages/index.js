@@ -58,8 +58,8 @@ function Home({ searchInput }) {
   || index?.postText?.toLowerCase().includes(searchInput));
 
   // || index?.NotAttendingNames?.includes(searchInput)
-  // || index?.attendingNames?.toLowerCase().includes(searchInput)
-  // || index?.maybeNames?.toLowerCase().includes(searchInput)
+  // || index?.attendingNames?.().includes(searchInput)
+  // || index?.maybeNames?.().includes(searchInput)
 
   // console.warn('these are the gets', getAllComments(), getAllPosts(), getAllProfiles());
 

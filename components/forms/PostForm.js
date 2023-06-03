@@ -8,6 +8,7 @@ import { FloatingLabel } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 // import { createProfile, updateProfile } from '../../api/profileData';
 import { createPost, updatePost } from '../../api/postData';
+import useFirebaseProfile from '../../utils/hooks/useFirebaseProfile';
 
 const initialState = {
   title: '',
@@ -21,6 +22,7 @@ export default function PostForm({ obj, onUpdate }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
+  const theProfile = useFirebaseProfile();
 
   useEffect(() => {
     if (obj.firebaseKey) setFormInput(obj);
@@ -39,7 +41,6 @@ export default function PostForm({ obj, onUpdate }) {
       ...prevState,
       [name]: value,
     }));
-    console.log('select value', value);
   };
 
   const handleSubmit = (e) => {
@@ -51,7 +52,7 @@ export default function PostForm({ obj, onUpdate }) {
       });
     } else {
       const payload = {
-        ...formInput, uid: user.uid, attending: 0, notAttending: 0, maybe: 0, dateOfPost: new Date(Date.now()),
+        ...formInput, uid: user.uid, attending: 0, notAttending: 0, maybe: 0, dateOfPost: new Date(Date.now()), username: theProfile.username, profileAvatar: theProfile.avatar, profileFbKey: theProfile.firebaseKey,
       };
       createPost(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
