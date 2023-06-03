@@ -22,7 +22,7 @@ const AttendBtn = ({ postObj, updatePostHandler }) => {
 
   const addNot = () => {
     const updatedPost = { ...postObj, notAttending: postObj.notAttending + 1 };
-    if (!Object.hasOwn(updatedPost, 'notAttendingNames')) {
+    if (!Object.hasOwn(updatedPost, 'NotAttendingNames')) {
       updatedPost.NotAttendingNames = [theProfile?.username];
     } else {
       updatedPost.NotAttendingNames = [...updatedPost.NotAttendingNames, theProfile?.username];

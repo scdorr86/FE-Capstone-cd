@@ -96,3 +96,58 @@ th {
   color: white;
   transform: rotateY(180deg);
 }
+
+.post-details {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  height: 150px;
+}
+
+.title {
+  color: orange;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  font-display:;
+}
+
+.tables {
+  margin-top: 20px;
+}
+
+.table-header {
+  color: white;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.table-body {
+  background-color: #f8f9fa;
+}
+
+.table-body tr {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table-cell {
+  padding: 8px;
+  color: orange;
+}
+
+.navBar {
+  color:orange;
+}
+
+.comment-avatar{
+  border-radius: 100px;
+  height: 30px;
+  margin-right: 10px;
+}
+.comment-container{
+  margin-top: 10px;
+}
+.list-comments{
+  margin-top: 40px;
+}

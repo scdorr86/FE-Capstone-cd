@@ -67,8 +67,9 @@ export default function ProfileForm({ obj, onUpdate }) {
   return (
     <>
       <Button
-        className="modalForm bg-dark border-0"
+        className="modalForm bg-dark border-0 my-3 mx-0"
         onClick={handleShow}
+        style={{ color: 'orange' }}
       >
         {obj?.firebaseKey ? 'Update Profile' : 'Create Profile'}
       </Button>

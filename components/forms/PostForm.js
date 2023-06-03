@@ -8,6 +8,7 @@ import { FloatingLabel } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 // import { createProfile, updateProfile } from '../../api/profileData';
 import { createPost, updatePost } from '../../api/postData';
+import useFirebaseProfile from '../../utils/hooks/useFirebaseProfile';
 
 const initialState = {
   title: '',
@@ -21,6 +22,7 @@ export default function PostForm({ obj, onUpdate }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
+  const theProfile = useFirebaseProfile();
 
   useEffect(() => {
     if (obj.firebaseKey) setFormInput(obj);
@@ -39,7 +41,6 @@ export default function PostForm({ obj, onUpdate }) {
       ...prevState,
       [name]: value,
     }));
-    console.log('select value', value);
   };
 
   const handleSubmit = (e) => {
@@ -51,7 +52,7 @@ export default function PostForm({ obj, onUpdate }) {
       });
     } else {
       const payload = {
-        ...formInput, uid: user.uid, attending: 0, notAttending: 0, maybe: 0, dateOfPost: new Date(Date.now()),
+        ...formInput, uid: user.uid, attending: 0, notAttending: 0, maybe: 0, dateOfPost: new Date(Date.now()), username: theProfile.username, profileAvatar: theProfile.avatar, profileFbKey: theProfile.firebaseKey,
       };
       createPost(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
@@ -69,20 +70,21 @@ export default function PostForm({ obj, onUpdate }) {
     <>
       <Button
         variant="light"
-        className="modalForm"
+        className="modalForm mb-2"
         onClick={handleShow}
+        style={{ color: 'orange' }}
       >
         {obj.firebaseKey ? 'Update Post' : 'Create Post'}
       </Button>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>{obj.firebaseKey ? 'Update' : 'Create'} Post</Modal.Title>
+        <Modal.Header className="bg-black" closeButton>
+          <Modal.Title style={{ color: 'orange' }}>{obj.firebaseKey ? 'Update' : 'Create'} Post</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="bg-light">
           <Form onSubmit={handleSubmit}>
             {/* Post Title  */}
-            <FloatingLabel controlId="floatingInput1" label="Post Title" className="mb-3" style={{ color: 'red' }}>
+            <FloatingLabel controlId="floatingInput1" label="Post Title" className="mb-3" style={{ color: 'orange' }}>
               <Form.Control
                 type="text"
                 placeholder="Enter Session Title"
@@ -94,7 +96,7 @@ export default function PostForm({ obj, onUpdate }) {
             </FloatingLabel>
 
             {/* Session Day Select  */}
-            <FloatingLabel controlId="floatingInput1" label="Session Day" className="mb-3" style={{ color: 'red' }}>
+            <FloatingLabel controlId="floatingInput1" label="Session Day" className="mb-3" style={{ color: 'orange' }}>
               <Form.Select
                 type="text"
                 placeholder="Enter Session Day"
@@ -115,7 +117,7 @@ export default function PostForm({ obj, onUpdate }) {
             </FloatingLabel>
 
             {/* Session Time Select  */}
-            <FloatingLabel controlId="floatingInput1" label="Session Time" className="mb-3" style={{ color: 'red' }}>
+            <FloatingLabel controlId="floatingInput1" label="Session Time" className="mb-3" style={{ color: 'orange' }}>
               <Form.Select
                 type="text"
                 placeholder="Enter Session Time (All times in CST)"
@@ -134,7 +136,7 @@ export default function PostForm({ obj, onUpdate }) {
             </FloatingLabel>
 
             {/* Post Text  */}
-            <FloatingLabel controlId="floatingInput3" label="Game Session Description" className="mb-3" style={{ color: 'red' }}>
+            <FloatingLabel controlId="floatingInput3" label="Game Session Description" className="mb-3" style={{ color: 'orange' }}>
               <Form.Control
                 type="text"
                 placeholder="Game Session Details"
@@ -145,7 +147,7 @@ export default function PostForm({ obj, onUpdate }) {
               />
             </FloatingLabel>
 
-            <Button type="submit">{obj.firebaseKey ? 'Update' : 'Submit'}</Button>
+            <Button className="btn btn-dark" type="submit">{obj.firebaseKey ? 'Update' : 'Submit'}</Button>
           </Form>
         </Modal.Body>
         <Modal.Footer />

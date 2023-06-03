@@ -32,7 +32,7 @@ export default function NavBarAuth({ searchInput, setSearchInput }) {
       {[false].map((expand) => (
         <Navbar key={expand} bg="light" expand={false} className="mb-3">
           <Container fluid>
-            <Navbar.Brand href="/">GameRsvp</Navbar.Brand>
+            <Navbar.Brand style={{ color: 'orange' }} href="/">GameRsvp</Navbar.Brand>
             <PostForm onUpdate={getPosts} />
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
@@ -47,9 +47,10 @@ export default function NavBarAuth({ searchInput, setSearchInput }) {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="/profile">Profile</Nav.Link>
-                  <Nav.Link href="/">Postings Home</Nav.Link>
+                  <Nav.Link style={{ color: 'orange' }} href="/profile">Profile</Nav.Link>
+                  <Nav.Link style={{ color: 'orange' }} href="/">Postings Home</Nav.Link>
                   <NavDropdown
+                    style={{ color: 'orange' }}
                     title="Other Links"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
@@ -75,10 +76,10 @@ export default function NavBarAuth({ searchInput, setSearchInput }) {
                     value={searchInput}
                     onChange={handleChange}
                   />
-                  <Button variant="outline-dark">Search</Button>
+                  <Button style={{ color: 'orange' }} variant="outline-dark">Search</Button>
                 </Form>
                 <ProfileForm />
-                <Button className="modalForm bg-dark border-0" onClick={signOut}>Sign Out</Button>
+                <Button style={{ color: 'orange' }} className="modalForm bg-dark border-0 mx-3" onClick={signOut}>Sign Out</Button>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
