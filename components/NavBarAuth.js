@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // import { useRouter } from 'next/router';
 // import Link from 'next/link';
 import {
-  Navbar, Container, Nav, Button,
+  Navbar, Container, Nav, Button, Image
 } from 'react-bootstrap';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import PropTypes from 'prop-types';
@@ -32,7 +32,7 @@ export default function NavBarAuth({ searchInput, setSearchInput }) {
       {[false].map((expand) => (
         <Navbar key={expand} bg="light" expand={false} className="mb-3">
           <Container fluid>
-            <Navbar.Brand style={{ color: 'orange' }} href="/">GameRsvp</Navbar.Brand>
+            <Navbar.Brand className="fw-bold" style={{ color: 'orange' }} href="/"><Image src="/assets/logotest.png" />GameRsvp</Navbar.Brand>
             <PostForm onUpdate={getPosts} />
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas

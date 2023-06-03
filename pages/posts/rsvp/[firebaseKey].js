@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
+import { Image } from 'react-bootstrap';
 import { getSinglePost } from '../../../api/postData';
 import { getAllProfiles } from '../../../api/profileData';
 import CommentForm from '../../../components/forms/CommentForm';
@@ -20,21 +21,22 @@ export default function PostRsvp() {
     getAllProfiles()?.then((data) => data?.filter((index) => index?.uid === post?.uid))?.then(setProfile);
   }, [firebaseKey]);
 
+  console.log('images', post?.profileAvatar, post);
+
   // getAllProfiles().then((data) => console.log('this is the', data));
   // console.log('dynamic route', firebaseKey, router, post);
   // console.log('dynamic post', post);
   // console.log('get post', getSinglePost(firebaseKey));
 
   // console.log('table profile obj', profile);
-  // console.log('post map', post?.attendingNames);
 
   return (
     <>
-      <div className="post-details">
-        <img className="avatar" src={profile?.avatar} alt="avatar here" />
-        <h2 className="title">Game Session: {post?.title}</h2>
+      <div className="post-details justify-content-center">
+        <Image className="avatar" src={post?.profileAvatar} alt="no avatar" />
+        <h1 className="title">Game Session: {post?.title}</h1>
       </div>
-      <div className="tables">
+      <div className="tables justify-content-center">
         <Table striped>
           <thead>
             <tr>

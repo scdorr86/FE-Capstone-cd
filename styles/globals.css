@@ -103,14 +103,16 @@ th {
 }
 
 .avatar {
-  height: 150px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
 }
 
 .title {
   color: orange;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
-  font-display:;
+  font-size: 45px;
 }
 
 .tables {

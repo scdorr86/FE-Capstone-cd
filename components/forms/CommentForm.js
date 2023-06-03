@@ -62,6 +62,7 @@ export default function CommentForm({ postId, onUpdate }) {
                 <Card.Img src={theProfile?.avatar} style={{ width: '50px', borderRadius: '100px' }} className="me-3 d-flex flex-column" />
                 <Form.Control
                   type="text"
+                  style={{ color: 'orange' }}
                   placeholder="Add a comment..."
                   name="commentText"
                   value={formInput.comment}
