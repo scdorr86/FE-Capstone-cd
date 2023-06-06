@@ -13,16 +13,15 @@ const initialState = {
   commentText: '',
 };
 
-export default function CommentForm({ postId, onUpdate }) {
+export default function CommentForm({ postId, onUpdate, comments }) {
   const [formInput, setFormInput] = useState(initialState);
   const { user } = useAuth();
-  const [comments, setComments] = useState();
   const theProfile = useFirebaseProfile();
   const [profiles, setProfiles] = useState({});
 
   useEffect(() => {
-    getCommentsByPostId(postId).then(setComments);
-  }, [postId]);
+    getCommentsByPostId(postId);
+  }, [postId, comments]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,16 +40,16 @@ export default function CommentForm({ postId, onUpdate }) {
       const patchPayload = { firebaseKey: name };
       updateComment(patchPayload).then(() => {
         setFormInput(initialState);
+        onUpdate();
       });
     });
-    getCommentsByPostId(postId).then(setComments);
   };
 
   const getProfiles = () => {
     getAllProfiles()?.then(setProfiles);
   };
 
-  console.log('test', getProfiles);
+  console.log('test', getProfiles, comments);
 
   return (
     <>
@@ -65,7 +64,7 @@ export default function CommentForm({ postId, onUpdate }) {
                   style={{ color: 'orange' }}
                   placeholder="Add a comment..."
                   name="commentText"
-                  value={formInput.comment}
+                  value={formInput.commentText}
                   onChange={handleChange}
                   className="d-flex"
                   required
@@ -85,12 +84,12 @@ export default function CommentForm({ postId, onUpdate }) {
             </Form>
           </div>
           <div className="list-comments">
-            {comments?.map((comment) => <Comments commObj={comment} videoId={comment.video_id} />)}
+            {comments?.map((comment) => <Comments commObj={comment} videoId={comment.video_id} onUpdate={onUpdate} />)}
           </div>
         </>
       ) : (
         <div className="list-comments">
-          {comments?.map((comment) => <Comments commObj={comment} profileObj={profiles} />)}
+          {comments?.map((comment) => <Comments commObj={comment} profileObj={profiles} onUpdate={onUpdate} />)}
         </div>
       )}
     </>
@@ -100,4 +99,5 @@ export default function CommentForm({ postId, onUpdate }) {
 CommentForm.propTypes = {
   postId: PropTypes.string.isRequired,
   onUpdate: PropTypes.func.isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };

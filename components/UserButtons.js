@@ -5,7 +5,7 @@ import Link from 'next/link';
 // import { useAuth } from '../utils/context/authContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
-import { deletePost } from '../api/postData';
+import { deletePost, deletePostCommentRelationship } from '../api/postData';
 import { faPencil, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Buttons({ postObj, onUpdate }) {
@@ -13,7 +13,7 @@ function Buttons({ postObj, onUpdate }) {
   const theProfile = useFirebaseProfile();
   const deleteThisPost = () => {
     if (window.confirm(`Delete ${postObj.title}?`)) {
-      deletePost(postObj.firebaseKey).then(() => onUpdate());
+      deletePostCommentRelationship(postObj.firebaseKey).then(() => onUpdate());
     }
   };
 

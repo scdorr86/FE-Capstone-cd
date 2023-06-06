@@ -12,13 +12,17 @@ export default function PostRsvp() {
   const [profile, setProfile] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
+  const [comments, setComments] = useState([]);
   // getSinglePost(firebaseKey).then((data) => setPost(data)).then(console.log('effect post', post));
 
-  const getPostComments = () => { getCommentsByPostId(firebaseKey).then(); };
+  const getPostComments = () => {
+    getCommentsByPostId(firebaseKey).then(setComments);
+  };
 
   useEffect(() => {
     getSinglePost(firebaseKey)?.then((data) => setPost(data));
     getAllProfiles()?.then((data) => data?.filter((index) => index?.uid === post?.uid))?.then(setProfile);
+    getPostComments();
   }, [firebaseKey]);
 
   console.log('images', post?.profileAvatar, post);
@@ -28,7 +32,7 @@ export default function PostRsvp() {
   // console.log('dynamic post', post);
   // console.log('get post', getSinglePost(firebaseKey));
 
-  // console.log('table profile obj', profile);
+  console.log('tablcomments', comments);
 
   return (
     <>
@@ -84,7 +88,7 @@ export default function PostRsvp() {
       </div>
       <span>Comments</span>
       <div>
-        <CommentForm postId={firebaseKey} onUpdate={getPostComments} />
+        <CommentForm postId={firebaseKey} onUpdate={getPostComments} comments={comments} />
       </div>
     </>
   );
