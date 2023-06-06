@@ -1,3 +1,5 @@
+import { deleteComment } from "./commentData";
+
 const dbUrl = 'https://front-end-capstone-11a38-default-rtdb.firebaseio.com';
 
 const getAllPosts = () => new Promise((resolve, reject) => {
@@ -62,10 +64,34 @@ const deletePost = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getPostComments = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/comments/.json?orderBy="postId"&equalTo="${firebaseKey}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
+const deletePostCommentRelationship = (firebaseKey) => new Promise((resolve, reject) => {
+  getPostComments(firebaseKey).then((postCommentsArray) => {
+    const deleteCommentPromises = postCommentsArray.map((comment) => deleteComment(comment.firebaseKey));
+
+    Promise.all(deleteCommentPromises).then(() => {
+      deletePost(firebaseKey).then(resolve);
+    });
+  }).catch(reject);
+});
+
 export {
   deletePost,
   createPost,
   updatePost,
   getAllPosts,
   getSinglePost,
+  getPostComments,
+  deletePostCommentRelationship,
 };

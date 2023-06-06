@@ -5,7 +5,7 @@ import Link from 'next/link';
 // import { useAuth } from '../utils/context/authContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
-import { deletePost } from '../api/postData';
+import { deletePost, deletePostCommentRelationship } from '../api/postData';
 import { faPencil, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Buttons({ postObj, onUpdate }) {
@@ -13,7 +13,7 @@ function Buttons({ postObj, onUpdate }) {
   const theProfile = useFirebaseProfile();
   const deleteThisPost = () => {
     if (window.confirm(`Delete ${postObj.title}?`)) {
-      deletePost(postObj.firebaseKey).then(() => onUpdate());
+      deletePostCommentRelationship(postObj.firebaseKey).then(() => onUpdate());
     }
   };
 
@@ -23,12 +23,12 @@ function Buttons({ postObj, onUpdate }) {
       theProfile?.uid === postObj.uid ? (
 
         <>
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap justify-content-center">
             <Link href={`/posts/edit/${postObj?.firebaseKey}`} passHref>
-              <Button className="border-0 w-25 mx-sm-auto" variant="dark" size="sm" onClick={console.warn('this is the', postObj.firebaseKey)}>Edit <FontAwesomeIcon className="pe-2" icon={faPencil} /></Button>
+              <Button className="h-10 border-0 d-flex mr-1" variant="dark" size="sm" onClick={console.warn('this is the', postObj.firebaseKey)}>Edit  <FontAwesomeIcon className="pe-2" icon={faPencil} /></Button>
             </Link>
-            <Button className="m-2 w-25 mx-sm-auto text-black-75 btn-sm" variant="light" size="xs" onClick={deleteThisPost}>
-              <FontAwesomeIcon className="pe-2" icon={faTrashAlt} />
+            <Button className="text-black-75 btn-sm h-10" variant="light" size="xs" onClick={deleteThisPost}>
+              Delete<FontAwesomeIcon className="pe-2" icon={faTrashAlt} />
             </Button>
           </div>
         </>

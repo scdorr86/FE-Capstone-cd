@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 // import Link from 'next/link';
 // import { deletePost } from '../api/postData';
+import { Image } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import Buttons from './UserButtons';
 import { updatePost } from '../api/postData';
@@ -30,7 +31,7 @@ function PostCard({ postObj, onUpdate, profileObj }) {
       <div className="flip-card">
         <div className="flip-card-inner">
           <div className="flip-card-front">
-            <img height="150px" src={profile?.avatar} alt="avatar" />
+            <Image height="150px" src={profile?.avatar} alt="avatar" />
             <h5>{profile?.username}</h5>
             <p>{profile?.gamertags}</p>
 
@@ -55,7 +56,9 @@ function PostCard({ postObj, onUpdate, profileObj }) {
           <p className="card-text bold" style={{ color: 'red' }}>Session Details: {postObj?.postText}</p>
           <p className="card-text bold" style={{ color: 'red' }}>Day of Session: {postObj?.sessionDay}</p>
           <p className="card-text bold" style={{ color: 'red' }}>Session Time: {postObj?.sessionTime}</p>
-          <Buttons postObj={updatedPost} onUpdate={onUpdate} />
+          <div className="mb-2">
+            <Buttons postObj={updatedPost} onUpdate={onUpdate} />
+          </div>
           <AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} />
           <RsvpBtn postObj={updatedPost} />
         </Card.Body>

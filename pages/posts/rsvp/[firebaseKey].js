@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
+import { Image } from 'react-bootstrap';
 import { getSinglePost } from '../../../api/postData';
 import { getAllProfiles } from '../../../api/profileData';
 import CommentForm from '../../../components/forms/CommentForm';
@@ -11,30 +12,35 @@ export default function PostRsvp() {
   const [profile, setProfile] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
+  const [comments, setComments] = useState([]);
   // getSinglePost(firebaseKey).then((data) => setPost(data)).then(console.log('effect post', post));
 
-  const getPostComments = () => { getCommentsByPostId(firebaseKey).then(); };
+  const getPostComments = () => {
+    getCommentsByPostId(firebaseKey).then(setComments);
+  };
 
   useEffect(() => {
     getSinglePost(firebaseKey)?.then((data) => setPost(data));
     getAllProfiles()?.then((data) => data?.filter((index) => index?.uid === post?.uid))?.then(setProfile);
+    getPostComments();
   }, [firebaseKey]);
+
+  console.log('images', post?.profileAvatar, post);
 
   // getAllProfiles().then((data) => console.log('this is the', data));
   // console.log('dynamic route', firebaseKey, router, post);
   // console.log('dynamic post', post);
   // console.log('get post', getSinglePost(firebaseKey));
 
-  // console.log('table profile obj', profile);
-  // console.log('post map', post?.attendingNames);
+  console.log('tablcomments', comments);
 
   return (
     <>
-      <div className="post-details">
-        <img className="avatar" src={profile?.avatar} alt="avatar here" />
-        <h2 className="title">Game Session: {post?.title}</h2>
+      <div className="post-details justify-content-center">
+        <Image className="avatar" src={post?.profileAvatar} alt="no avatar" />
+        <h1 className="title">Game Session: {post?.title}</h1>
       </div>
-      <div className="tables">
+      <div className="tables justify-content-center">
         <Table striped>
           <thead>
             <tr>
@@ -82,7 +88,7 @@ export default function PostRsvp() {
       </div>
       <span>Comments</span>
       <div>
-        <CommentForm postId={firebaseKey} onUpdate={getPostComments} />
+        <CommentForm postId={firebaseKey} onUpdate={getPostComments} comments={comments} />
       </div>
     </>
   );
