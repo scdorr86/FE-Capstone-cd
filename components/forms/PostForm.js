@@ -70,9 +70,9 @@ export default function PostForm({ obj, onUpdate }) {
     <>
       <Button
         variant="light"
-        className="modalForm mb-2"
+        className="modalForm my-3"
         onClick={handleShow}
-        style={{ color: 'orange' }}
+        style={{ color: 'orange', minWidth: '125px' }}
       >
         {obj.firebaseKey ? 'Update Post' : 'Create Post'}
       </Button>
