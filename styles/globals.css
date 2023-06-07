@@ -112,7 +112,15 @@ th {
   color: orange;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
-  font-size: 45px;
+  font-size: 65px;
+  text-shadow: -0.5px -0.5px 0 whitesmoke;
+}
+
+.cardTitle {
+  color: black;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  text-shadow: -0.5px -0.5px 0 whitesmoke;
 }
 
 .tables {
@@ -152,4 +160,18 @@ th {
 }
 .list-comments{
   margin-top: 40px;
+}
+
+.logo {
+  border-radius: 250px;
+  height: 45px;
+}
+
+.tableCount {
+  text-shadow: -0.5px -0.5px 0 white;
+  font-size: larger; 
+}
+
+.cardUsername {
+  color: black;
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Image } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext'; // TODO: COMMENT IN FOR AUTH
 import { getAllPosts } from '../api/postData';
 import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
@@ -33,27 +34,27 @@ function Profile() {
   return (
     <>
       <div
-        className="text-center d-flex flex-column justify-content-center align-content-center"
+        className="d-flex flex-column bg-white text-center"
         style={{
-          height: '75vh',
+          height: '60vh',
           padding: '30px',
           maxWidth: '400px',
-          margin: '0 auto',
+          margin: '10px',
+          borderRadius: '25%',
         }}
       >
-        <h1>Hello {user.displayName}! </h1>
-        <p>Profile Page</p>
-        <img src={profile?.avatar} alt="avatar" />
+        <Image src={profile?.avatar} alt="avatar" style={{ height: '250px', borderRadius: '25%' }} />
         <p>{profile?.username}</p>
         <ProfileForm obj={theProfile} onUpdate={getProfile} />
       </div>
 
-      <div className="d-flex flex-wrap">
-        this will be the landing of posts!
-        {/* map over posts using Card component */}
-        {userPosts.map((post) => (
-          <PostCard key={post?.firebaseKey} profileObj={userProfile} postObj={post} onUpdate={getPosts} />
-        ))}
+      <div className="bg-white">
+        <div className="d-flex flex-wrap bg-gray">
+          {/* map over posts using Card component */}
+          {userPosts.map((post) => (
+            <PostCard key={post?.firebaseKey} profileObj={userProfile} postObj={post} onUpdate={getPosts} />
+          ))}
+        </div>
       </div>
     </>
   );

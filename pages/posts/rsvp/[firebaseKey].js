@@ -44,7 +44,7 @@ export default function PostRsvp() {
         <Table striped>
           <thead>
             <tr>
-              <th className="table-header">Attending Session</th>
+              <th className="table-header">Attending Session: <span className="tableCount" style={{ color: 'orange' }}>{post?.attending}</span></th>
             </tr>
           </thead>
           <tbody className="table-body">
@@ -59,7 +59,7 @@ export default function PostRsvp() {
         <Table striped>
           <thead>
             <tr>
-              <th className="table-header">Not Attending</th>
+              <th className="table-header">Not Attending: <span className="tableCount" style={{ color: 'orange' }}>{post?.notAttending}</span></th>
             </tr>
           </thead>
           <tbody className="table-body">
@@ -74,7 +74,7 @@ export default function PostRsvp() {
         <Table striped>
           <thead>
             <tr>
-              <th className="table-header">Possible Attendees</th>
+              <th className="table-header">Possible Attendees: <span className="tableCount" style={{ color: 'orange' }}>{post?.maybe}</span></th>
             </tr>
           </thead>
           <tbody className="table-body">
