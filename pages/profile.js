@@ -25,7 +25,7 @@ function Profile() {
     getSingleProfile(theProfile?.firebaseKey).then(setProfile);
   };
 
-  const userPosts = posts.filter((index) => index?.uid === user.uid);
+  const userPosts = posts?.filter((index) => index?.uid === user.uid);
 
   useEffect(() => {
     getPosts();
@@ -73,7 +73,13 @@ function Profile() {
               <ul>{profile?.PreferredGameTimes}</ul>
             </li>
           </div>
-          <div className="profileAbout">Post Title List (ordered?)</div>
+          <div>
+            <div className="profileAbout">Post Title List (ordered?)</div>
+            <div>{userPosts?.map((post) => (
+              <ul>{post?.title}</ul>
+            ))}
+            </div>
+          </div>
         </div>
       </div>
 
