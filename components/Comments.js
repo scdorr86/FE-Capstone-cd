@@ -28,10 +28,10 @@ export default function Comments({ commObj, onUpdate }) {
       <div className="d-flex flex-row">
         <div><Image className="comment-avatar" src={commObj?.commentAvatar} alt="test" /></div>
         <div className="d-flex flex-column">
-          <h6 className="comment-name by-author"><a href="http://creaticode.com/blog">{commObj?.userName}</a></h6>
+          <h6 className="comment-name by-author mt-1"><a href="http://creaticode.com/blog">{commObj?.userName}</a></h6>
           <div className="d-flex justify-content-between">
-            <div>
-              <FontAwesomeIcon className="pe-2" icon={faComment} />: {commObj?.commentText}
+            <div className='mt-1'>
+              <FontAwesomeIcon className="pe-2" style={{ color: 'white' }} icon={faComment} /> <span className="cmtTxt">{commObj?.commentText}</span>
             </div>
             <div className="justify-content-end">
               {

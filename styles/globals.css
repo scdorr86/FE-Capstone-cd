@@ -112,7 +112,15 @@ th {
   color: orange;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
-  font-size: 45px;
+  font-size: 65px;
+  text-shadow: -0.5px -0.5px 0 whitesmoke;
+}
+
+.cardTitle {
+  color: black;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  text-shadow: -0.5px -0.5px 0 whitesmoke;
 }
 
 .tables {
@@ -152,4 +160,90 @@ th {
 }
 .list-comments{
   margin-top: 40px;
+}
+
+.logo {
+  border-radius: 250px;
+  height: 45px;
+}
+
+.tableCount {
+  text-shadow: -0.25px -0.75px 0 white;
+  font-size: larger; 
+}
+
+.cardUsername {
+  color: black;
+}
+
+.topProfile {
+  border: 2px solid gray;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.topAbout {
+  border: 1px solid orange;
+  display: flex;
+  background-color: whitesmoke;
+  justify-content: space-between;
+  border-radius: 10%;
+  padding: 30px;
+  width: 600px;
+  height: 415px;
+  margin: 10px;
+}
+.bottomPosts {
+  background-color: whitesmoke;
+  border-radius: 10%;
+  margin: 2px;
+  padding: 50px;
+  border: 1px solid orange;
+}
+
+.bottomPostHeader {
+  color: orange;
+  font-weight: bold;
+  text-decoration-style: wavy;
+  text-decoration-line: underline;
+}
+
+li {
+  color: orange;
+  list-style-type: square;
+  font-family: fantasy;
+}
+
+.topUsername {
+  color: orange;
+  margin-top: 2px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  font-size: xx-large;
+  text-shadow: -1.25px -0.5px 0 black;  
+}
+
+ul {
+  color: darkgray;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.profileAbout {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.profileBtns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.cmtTxt {
+  font-family: cursive;
 }

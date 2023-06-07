@@ -32,17 +32,17 @@ function PostCard({ postObj, onUpdate, profileObj }) {
         <div className="flip-card-inner">
           <div className="flip-card-front">
             <Image height="150px" src={profile?.avatar} alt="avatar" />
-            <h5>{profile?.username}</h5>
+            <h5 className="cardUsername">{profile?.username}</h5>
             <p>{profile?.gamertags}</p>
 
           </div>
           <div className="flip-card-back">
-            <p className="title">{postObj?.title}</p>
+            <p className="cardTitle">{postObj?.title}</p>
             <p>Day of Week: {postObj?.sessionDay}</p>
             <p>Approximate Time: {postObj?.sessionTime}</p>
             <p>Details: {postObj?.postText}</p>
             <Buttons postObj={updatedPost} onUpdate={onUpdate} />
-            <p><AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} /></p>
+            <p className="mt-2"><AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} /></p>
             <RsvpBtn postObj={updatedPost} />
           </div>
         </div>

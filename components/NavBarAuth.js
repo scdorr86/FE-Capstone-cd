@@ -32,7 +32,7 @@ export default function NavBarAuth({ searchInput, setSearchInput }) {
       {[false].map((expand) => (
         <Navbar key={expand} bg="light" expand={false} className="mb-3">
           <Container fluid>
-            <Navbar.Brand className="fw-bold" style={{ color: 'orange' }} href="/"><Image src="/logotest.png" />GameRsvp</Navbar.Brand>
+            <Navbar.Brand className="fw-bold" style={{ color: 'orange' }} href="/"><Image className="logo" src="/logotest.png" /></Navbar.Brand>
             <PostForm onUpdate={getPosts} />
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
