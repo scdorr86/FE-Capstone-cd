@@ -8,8 +8,9 @@ import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
 import ProfileForm from '../components/forms/ProfileForm';
 import PostCard from '../components/PostsCard';
 import PostForm from '../components/forms/PostForm';
+import FilterComponent from '../components/FilterComponent';
 
-function Home({ searchInput }) {
+function Home({ searchInput, query, setQuery }) {
   const { user } = useAuth(); // TODO: COMMENT IN FOR AUTH
   const theProfile = useFirebaseProfile();
   const [profiles, setProfiles] = useState([]);
@@ -71,8 +72,10 @@ function Home({ searchInput }) {
       theProfile !== null ? (
         <>
           <title>Cameron Dorris</title>
-
-          <PostForm onUpdate={getPosts} />
+          <div className="d-flex">
+            <PostForm onUpdate={getPosts} />
+            <FilterComponent getPosts={getPosts} setQuery={setQuery} />
+          </div>
           <div className="d-flex flex-wrap">
             {/* map over posts using Card component */}
             {searchedPosts?.map((post) => (
@@ -109,8 +112,12 @@ export default Home;
 
 Home.propTypes = {
   searchInput: PropTypes.string,
+  query: PropTypes.string,
+  setQuery: PropTypes.func,
 };
 
 Home.defaultProps = {
   searchInput: '',
+  query: '',
+  setQuery: () => {},
 };
