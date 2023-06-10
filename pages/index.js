@@ -15,14 +15,14 @@ function Home({ searchInput, query, setQuery }) {
   const theProfile = useFirebaseProfile();
   const [profiles, setProfiles] = useState([]);
   const [profile, setProfile] = useState([]);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState();
   const [checkprof, setCheckprof] = useState([]);
-  console.warn('this is user id', user.uid);
-  console.warn('this is all profile list', profiles);
-  console.warn('this is posts', posts);
-  console.warn('this is the single prof', profile);
-  console.warn(checkprof);
-  console.warn('Hook result', theProfile);
+  // console.warn('this is user id', user.uid);
+  // console.warn('this is all profile list', profiles);
+  // console.warn('this is posts', posts);
+  // console.warn('this is the single prof', profile);
+  // console.warn(checkprof);
+  // console.warn('Hook result', theProfile);
 
   const getProfiles = () => {
     getAllProfiles()?.then(setProfiles);
@@ -63,6 +63,8 @@ function Home({ searchInput, query, setQuery }) {
   // || index?.NotAttendingNames?.includes(searchInput)
   // || index?.attendingNames?.().includes(searchInput)
   // || index?.maybeNames?.().includes(searchInput)
+  // || index?.sessionDay?.includes(query)
+  // || index?.sessionTime?.includes(query)
 
   // console.warn('these are the gets', getAllComments(), getAllPosts(), getAllProfiles());
 
@@ -78,8 +80,8 @@ function Home({ searchInput, query, setQuery }) {
           </div>
           <div className="d-flex flex-wrap">
             {/* map over posts using Card component */}
-            {searchedPosts?.map((post) => (
-              <PostCard key={post?.firebaseKey} profileObj={profiles} postObj={post} onUpdate={getPosts} />
+            {searchedPosts?.map((item) => (
+              <PostCard key={item?.firebaseKey} profileObj={profiles} postObj={item} onUpdate={getPosts} />
             ))}
           </div>
         </>
@@ -113,11 +115,11 @@ export default Home;
 Home.propTypes = {
   searchInput: PropTypes.string,
   query: PropTypes.string,
-  setQuery: PropTypes.func,
+  setQuery: PropTypes.string,
 };
 
 Home.defaultProps = {
   searchInput: '',
   query: '',
-  setQuery: () => {},
+  setQuery: '',
 };
