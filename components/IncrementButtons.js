@@ -39,7 +39,7 @@ const AttendBtn = ({ postObj, updatePostHandler }) => {
     updatePostHandler(updatedPost);
   };
 
-  console.log('what is post obj', postObj);
+  // console.log('what is post obj', postObj);
 
   return (
     <>
@@ -62,7 +62,7 @@ const AttendBtn = ({ postObj, updatePostHandler }) => {
 export default AttendBtn;
 
 AttendBtn.propTypes = {
-  postObj: PropTypes.shape.isRequired,
+  postObj: PropTypes.shape().isRequired,
   updatePostHandler: PropTypes.func,
   // onUpdate: PropTypes.func.isRequired,
 };

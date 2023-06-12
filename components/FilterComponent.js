@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const FilterComponent = ({ getPosts, setQuery }) => {
+  const [title, setTitle] = useState('Day Filter');
   const handleSelect = (eventKey) => {
-    console.log('select drop test', eventKey);
+    // console.log('select drop test', eventKey)
+    setQuery(eventKey);
+    setTitle(eventKey);
   };
-
   // setQuery(eventKey);
 
   return (
@@ -16,7 +19,7 @@ const FilterComponent = ({ getPosts, setQuery }) => {
           id="dropdown-button-dark-example2"
           variant="secondary"
           menuVariant="dark"
-          title="Day Filter"
+          title={title}
           className="mt-2"
           onSelect={handleSelect}
         >

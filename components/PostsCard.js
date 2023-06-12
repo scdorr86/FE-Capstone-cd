@@ -15,7 +15,7 @@ function PostCard({ postObj, onUpdate, profileObj }) {
   const { user } = useAuth();
   const [profile, setProfile] = useState({});
   const [updatedPost, setUpdatedPost] = useState(postObj);
-  console.log('what is post obj', postObj);
+  // console.log('what is post obj', postObj);
   const updatePostHandler = (postObjPayload) => {
     updatePost(postObjPayload)?.then((data) => setUpdatedPost(data));
   };
