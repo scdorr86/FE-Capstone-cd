@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import PropTypes from 'prop-types';
 
 const FilterComponent = ({ getPosts, setQuery }) => {
   const handleSelect = (eventKey) => {
-    console.log('select drop test', eventKey);
+    setQuery(eventKey);
   };
 
   // setQuery(eventKey);

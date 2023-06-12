@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-// import Button from 'react-bootstrap/Button';
+
+import AttendBtn from './IncrementButtons';
+import Buttons from './UserButtons';
 import Card from 'react-bootstrap/Card';
+import { Image } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import RsvpBtn from './RsvpBtn';
+import { updatePost } from '../api/postData';
+import { useAuth } from '../utils/context/authContext';
+
+// import Button from 'react-bootstrap/Button';
+
 // import Link from 'next/link';
 // import { deletePost } from '../api/postData';
-import { Image } from 'react-bootstrap';
-import { useAuth } from '../utils/context/authContext';
-import Buttons from './UserButtons';
-import { updatePost } from '../api/postData';
-import AttendBtn from './IncrementButtons';
-import RsvpBtn from './RsvpBtn';
+
+
+
+
+
+
 
 function PostCard({ postObj, onUpdate, profileObj }) {
   const { user } = useAuth();
   const [profile, setProfile] = useState({});
   const [updatedPost, setUpdatedPost] = useState(postObj);
-  console.log('what is post obj', postObj);
   const updatePostHandler = (postObjPayload) => {
     updatePost(postObjPayload)?.then((data) => setUpdatedPost(data));
   };

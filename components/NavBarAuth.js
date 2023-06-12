@@ -1,18 +1,34 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+
+import {
+  Button,
+  Container,
+  Image,
+  Nav,
+  Navbar,
+} from 'react-bootstrap';
 import React, { useState } from 'react';
+
+import Form from 'react-bootstrap/Form';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import PostForm from './forms/PostForm';
+import ProfileForm from './forms/ProfileForm';
+import PropTypes from 'prop-types';
+import { getAllPosts } from '../api/postData';
+import { signOut } from '../utils/auth';
+
 // import { useRouter } from 'next/router';
 // import Link from 'next/link';
-import {
-  Navbar, Container, Nav, Button, Image,
-} from 'react-bootstrap';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import PropTypes from 'prop-types';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import Form from 'react-bootstrap/Form';
-import { signOut } from '../utils/auth';
-import ProfileForm from './forms/ProfileForm';
-import { getAllPosts } from '../api/postData';
-import PostForm from './forms/PostForm';
+
+
+
+
+
+
+
+
+
 
 export default function NavBarAuth({ searchInput, setSearchInput }) {
   // const router = useRouter();
@@ -110,7 +126,7 @@ export default function NavBarAuth({ searchInput, setSearchInput }) {
 
 NavBarAuth.propTypes = {
   searchInput: PropTypes.string,
-  setSearchInput: PropTypes.string,
+  setSearchInput: PropTypes.func,
 };
 
 NavBarAuth.defaultProps = {

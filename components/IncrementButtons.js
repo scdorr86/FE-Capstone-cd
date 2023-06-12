@@ -1,9 +1,13 @@
 // import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import {
-  faPersonCircleQuestion, faUserMinus, faUserPlus,
+  faPersonCircleQuestion,
+  faUserMinus,
+  faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
 
 const AttendBtn = ({ postObj, updatePostHandler }) => {
@@ -39,8 +43,6 @@ const AttendBtn = ({ postObj, updatePostHandler }) => {
     updatePostHandler(updatedPost);
   };
 
-  console.log('what is post obj', postObj);
-
   return (
     <>
       <div className="d-flex w-75 mx-auto mt-1">
@@ -62,7 +64,7 @@ const AttendBtn = ({ postObj, updatePostHandler }) => {
 export default AttendBtn;
 
 AttendBtn.propTypes = {
-  postObj: PropTypes.shape.isRequired,
+  postObj: PropTypes.shape().isRequired,
   updatePostHandler: PropTypes.func,
   // onUpdate: PropTypes.func.isRequired,
 };
