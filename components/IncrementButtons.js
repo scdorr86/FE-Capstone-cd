@@ -8,7 +8,6 @@ import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
 
 const AttendBtn = ({ postObj, updatePostHandler }) => {
   const theProfile = useFirebaseProfile();
-  console.log('this is attendingNames', postObj);
 
   const addAttend = () => {
     const updatedPost = { ...postObj, attending: postObj?.attending + 1 };
@@ -39,6 +38,9 @@ const AttendBtn = ({ postObj, updatePostHandler }) => {
     }
     updatePostHandler(updatedPost);
   };
+
+  // console.log('what is post obj', postObj);
+
   return (
     <>
       <div className="d-flex w-75 mx-auto mt-1">
@@ -60,7 +62,7 @@ const AttendBtn = ({ postObj, updatePostHandler }) => {
 export default AttendBtn;
 
 AttendBtn.propTypes = {
-  postObj: PropTypes.shape.isRequired,
+  postObj: PropTypes.shape().isRequired,
   updatePostHandler: PropTypes.func,
   // onUpdate: PropTypes.func.isRequired,
 };

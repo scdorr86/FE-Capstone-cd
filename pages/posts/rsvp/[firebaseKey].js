@@ -25,7 +25,7 @@ export default function PostRsvp() {
     getPostComments();
   }, [firebaseKey]);
 
-  console.log('images', post?.profileAvatar, post);
+  // console.log('images', post?.profileAvatar, post);
 
   // getAllProfiles().then((data) => console.log('this is the', data));
   // console.log('dynamic route', firebaseKey, router, post);

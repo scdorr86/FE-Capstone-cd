@@ -24,6 +24,7 @@ export default function NavBarAuth({ searchInput, setSearchInput }) {
   console.log(posts);
 
   const handleChange = (e) => {
+    console.log(e.target.value);
     setSearchInput(e.target.value.toLowerCase());
   };
 
@@ -110,10 +111,10 @@ export default function NavBarAuth({ searchInput, setSearchInput }) {
 
 NavBarAuth.propTypes = {
   searchInput: PropTypes.string,
-  setSearchInput: PropTypes.string,
+  setSearchInput: PropTypes.func,
 };
 
 NavBarAuth.defaultProps = {
   searchInput: '',
-  setSearchInput: '',
+  setSearchInput: () => {},
 };

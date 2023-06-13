@@ -204,7 +204,7 @@ th {
 .bottomPostHeader {
   color: orange;
   font-weight: bold;
-  text-decoration-style: wavy;
+  text-decoration-style: solid;
   text-decoration-line: underline;
 }
 
@@ -232,7 +232,7 @@ ul {
 
 .profileAbout {
   text-decoration-line: underline;
-  text-decoration-style: wavy;
+  text-decoration-style: solid;
   font-weight: bolder;
   text-align: center;
   margin-bottom: 15px;

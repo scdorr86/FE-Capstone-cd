@@ -4,9 +4,9 @@ import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 // import { useAuth } from '../utils/context/authContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencil, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
 import { deletePostCommentRelationship } from '../api/postData';
-import { faPencil, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Buttons({ postObj, onUpdate }) {
   // const { user } = useAuth();
@@ -25,7 +25,7 @@ function Buttons({ postObj, onUpdate }) {
         <>
           <div className="d-flex flex-wrap justify-content-center">
             <Link href={`/posts/edit/${postObj?.firebaseKey}`} passHref>
-              <Button className="h-10 border-0 d-flex mr-1" variant="dark" size="sm" onClick={console.warn('this is the', postObj.firebaseKey)}><FontAwesomeIcon className="pe-2 " icon={faPencil} />Edit</Button>
+              <Button className="h-10 border-0 d-flex mr-1" variant="dark" size="sm"><FontAwesomeIcon className="pe-2 " icon={faPencil} />Edit</Button>
             </Link>
             <Button className="text-black-75 btn-sm h-10" variant="light" size="xs" onClick={deleteThisPost}>
               Delete<FontAwesomeIcon className="pe-2" icon={faTrashAlt} />

@@ -8,6 +8,7 @@ import NavBarAuth from '../components/NavBarAuth';
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
   const [searchInput, setSearchInput] = useState('');
+  const [query, setQuery] = useState('');
 
   // if user state is null, then show loader
   if (userLoading) {
@@ -18,9 +19,9 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   if (user) {
     return (
       <>
-        <NavBarAuth searchInput={searchInput} setSearchInput={setSearchInput} /> {/* NavBar only visible if user is logged in and is in every view */}
+        <NavBarAuth searchInput={searchInput} setSearchInput={setSearchInput} query={query} setQuery={setQuery} /> {/* NavBar only visible if user is logged in and is in every view */}
         <div className="container">
-          <Component {...pageProps} searchInput={searchInput} setSearchInput={setSearchInput} />
+          <Component {...pageProps} searchInput={searchInput} setSearchInput={setSearchInput} query={query} setQuery={setQuery} />
         </div>
       </>
     );

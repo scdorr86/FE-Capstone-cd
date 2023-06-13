@@ -15,9 +15,9 @@ function PostCard({ postObj, onUpdate, profileObj }) {
   const { user } = useAuth();
   const [profile, setProfile] = useState({});
   const [updatedPost, setUpdatedPost] = useState(postObj);
-
+  // console.log('what is post obj', postObj);
   const updatePostHandler = (postObjPayload) => {
-    updatePost(postObjPayload).then((data) => setUpdatedPost(data));
+    updatePost(postObjPayload)?.then((data) => setUpdatedPost(data));
   };
 
   useEffect(() => {
@@ -34,7 +34,6 @@ function PostCard({ postObj, onUpdate, profileObj }) {
             <Image height="150px" src={profile?.avatar} alt="avatar" />
             <h5 className="cardUsername">{profile?.username}</h5>
             <p>{profile?.gamertags}</p>
-
           </div>
           <div className="flip-card-back">
             <p className="cardTitle">{postObj?.title}</p>
@@ -42,7 +41,7 @@ function PostCard({ postObj, onUpdate, profileObj }) {
             <p>Approximate Time: {postObj?.sessionTime}</p>
             <p>Details: {postObj?.postText}</p>
             <Buttons postObj={updatedPost} onUpdate={onUpdate} />
-            <p className="mt-2"><AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} /></p>
+            <AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} />
             <RsvpBtn postObj={updatedPost} />
           </div>
         </div>

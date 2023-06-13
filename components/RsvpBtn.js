@@ -11,7 +11,7 @@ function RsvpBtn({ postObj }) {
     <>
       <div className="justify-content-center">
         <Link href={`/posts/rsvp/${postObj?.firebaseKey}`} passHref>
-          <Button className="btn-sm mx-auto" variant="outline-warning" size="sm" onClick={console.warn('this is the', postObj.firebaseKey)}>Session RSVP List</Button>
+          <Button className="btn-sm mx-auto" variant="warning" size="sm">Session RSVP List</Button>
         </Link>
       </div>
     </>
