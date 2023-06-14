@@ -8,7 +8,7 @@ function useFirebaseProfile() {
   const { user } = useAuth();
 
   useEffect(() => {
-    console.warn('the userid', user.uid);
+    // console.log('the userid', user.uid);
     if (user?.uid) {
       const fetchAllProfiles = async () => {
         const profiles = await getAllProfiles();
