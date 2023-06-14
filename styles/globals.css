@@ -247,3 +247,22 @@ ul {
 .cmtTxt {
   font-family: cursive;
 }
+
+#dayDropdown, #sessionDropdown {
+  background-color: orange;
+  font-weight: bolder;
+  margin: 0px;
+}
+
+.landingBtns {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.updatePage {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}

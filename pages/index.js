@@ -10,7 +10,9 @@ import PostCard from '../components/PostsCard';
 import PostForm from '../components/forms/PostForm';
 import FilterComponent from '../components/FilterComponent';
 
-function Home({ searchInput, query, setQuery }) {
+function Home({
+  searchInput, query, setQuery, query2, setQuery2,
+}) {
   const { user } = useAuth(); // TODO: COMMENT IN FOR AUTH
   const theProfile = useFirebaseProfile();
   const [profiles, setProfiles] = useState([]);
@@ -18,12 +20,6 @@ function Home({ searchInput, query, setQuery }) {
   const [posts, setPosts] = useState();
   const [checkprof, setCheckprof] = useState([]);
   const [searchedPosts, setSearchedPosts] = useState(posts);
-  // console.warn('this is user id', user.uid);
-  // console.warn('this is all profile list', profiles);
-  // console.warn('this is posts', posts);
-  // console.warn('this is the single prof', profile);
-  // console.warn(checkprof);
-  // console.warn('Hook result', theProfile);
 
   const getProfiles = () => {
     getAllProfiles()?.then(setProfiles);
@@ -55,7 +51,7 @@ function Home({ searchInput, query, setQuery }) {
   }, [profiles, user.uid]);
 
   useEffect(() => {
-    const filteredPosts = (posts?.filter((index) => (query === 'All' ? index : (
+    const filteredPosts = (posts?.filter((index) => (query === 'All' || query2 === 'All' ? index : (
 
       index?.title.toLowerCase().includes(searchInput)
   || index?.sessionDay?.toLowerCase().includes(searchInput)
@@ -63,21 +59,15 @@ function Home({ searchInput, query, setQuery }) {
   || index?.username?.toLowerCase().includes(searchInput)
   || index?.title?.toLowerCase().includes(searchInput)
   || index?.postText?.toLowerCase().includes(searchInput)) && (
-      index?.sessionDay?.includes(query)
- || index?.sessionTime?.includes(query))
+      index?.sessionDay?.includes(query)) && (
+      index?.sessionTime?.includes(query2))
     )));
     console.log('the query', query);
+    console.log('the query2', query2);
     console.log('the posts', posts);
     console.log('filtered posts', filteredPosts);
     setSearchedPosts(filteredPosts);
-  }, [query, posts, searchInput]);
-  // || index?.NotAttendingNames?.includes(searchInput)
-  // || index?.attendingNames?.().includes(searchInput)
-  // || index?.maybeNames?.().includes(searchInput)
-  // || index?.sessionDay?.includes(query)
-  // || index?.sessionTime?.includes(query)
-
-  // console.warn('these are the gets', getAllComments(), getAllPosts(), getAllProfiles());
+  }, [query, posts, searchInput, query2]);
 
   return (
     <>
@@ -85,9 +75,9 @@ function Home({ searchInput, query, setQuery }) {
       theProfile !== null ? (
         <>
           <title>Cameron Dorris</title>
-          <div className="d-flex">
+          <div className="landingBtns">
             <PostForm onUpdate={getPosts} />
-            <FilterComponent getPosts={getPosts} setQuery={setQuery} />
+            <FilterComponent getPosts={getPosts} setQuery={setQuery} setQuery2={setQuery2} />
           </div>
           <div className="d-flex flex-wrap">
             {/* map over posts using Card component */}
@@ -127,10 +117,14 @@ Home.propTypes = {
   searchInput: PropTypes.string,
   query: PropTypes.string,
   setQuery: PropTypes.func,
+  query2: PropTypes.string,
+  setQuery2: PropTypes.func,
 };
 
 Home.defaultProps = {
   searchInput: '',
   query: '',
   setQuery: () => {},
+  query2: '',
+  setQuery2: () => {},
 };
