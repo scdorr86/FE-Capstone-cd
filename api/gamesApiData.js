@@ -1,4 +1,4 @@
-const dbUrl = 'https://api.rawg.io/api/games?key=c25407e7e7ef40ee8cecb385a636fe29';
+const dbUrl = 'https://api.rawg.io/api/games?key=c25407e7e7ef40ee8cecb385a636fe29&orderBy="page_size"&equalTo=100';
 
 const getApiGames = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}`, {
