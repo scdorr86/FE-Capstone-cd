@@ -54,6 +54,7 @@ export default function NavBarAuth({ searchInput, setSearchInput }) {
                     style={{ color: 'orange' }}
                     title="Other Links"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
+                    className="mb-2"
                   >
                     <NavDropdown.Item href="https://www.playstation.com/en-us/">Playstation</NavDropdown.Item>
                     <NavDropdown.Item href="https://www.xbox.com/en-US/">
@@ -62,9 +63,9 @@ export default function NavBarAuth({ searchInput, setSearchInput }) {
                     <NavDropdown.Item href="https://www.pcgamer.com/">
                       PC Gamer
                     </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
-                      Something else here
+                    <NavDropdown.Divider style={{ border: 'solid 1px orange' }} />
+                    <NavDropdown.Item href="/games">
+                      Games Library
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
