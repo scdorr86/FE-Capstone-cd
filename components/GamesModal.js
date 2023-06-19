@@ -19,10 +19,10 @@ export default function GameModal({ gamesObj }) {
   return (
     <>
       <Button
-        variant="light"
-        className=""
+        // variant="light"
+        className="gamesBtn"
         onClick={handleShow}
-        style={{ color: 'orange', minWidth: '125px' }}
+        // style={{ color: 'orange', minWidth: '125px' }}
       >
         {gamesObj.name}
       </Button>
@@ -34,7 +34,11 @@ export default function GameModal({ gamesObj }) {
         </Modal.Header>
         <Image src={gamesObj.background_image} />
         <Modal.Body className="bg-light">
-          <li>{gamesObj.rating}</li>
+          <li>Release Date: {gamesObj?.released}</li>
+          <li>Genre: {gamesObj?.genres?.map((item) => (item.name))}</li>
+          <li>Rating: {gamesObj?.rating} out of {gamesObj?.rating_top}</li>
+          <li>ESRB Rating: {gamesObj?.esrb_rating?.name}</li>
+          <li>Platforms: {gamesObj?.platforms.map((item) => (item.platform.name))}</li>
         </Modal.Body>
 
         <Modal.Footer>

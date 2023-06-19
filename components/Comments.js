@@ -9,7 +9,7 @@ import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
 import { deleteComment } from '../api/commentData';
 
 export default function Comments({ commObj, onUpdate }) {
-  // console.log('avatar', commObj, commObj?.avatar);
+  // console.log('commObj', commObj);
   const theProfile = useFirebaseProfile();
   // const [comments, setComments] = useState();
 
@@ -56,6 +56,6 @@ export default function Comments({ commObj, onUpdate }) {
 }
 
 Comments.propTypes = {
-  commObj: PropTypes.shape.isRequired,
+  commObj: PropTypes.shape().isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

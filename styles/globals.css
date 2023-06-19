@@ -165,6 +165,7 @@ th {
 .logo {
   border-radius: 250px;
   height: 45px;
+  margin-right: 10px;
 }
 
 .tableCount {
@@ -195,7 +196,7 @@ th {
 }
 .bottomPosts {
   background-color: whitesmoke;
-  border-radius: 10%;
+  border-radius: 4%;
   margin: 2px;
   padding: 50px;
   border: 1px solid orange;
@@ -265,4 +266,43 @@ ul {
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
+}
+
+.gamesLanding {
+  display: flex;
+  flex-direction: column;
+}
+
+.gamesLandingHeader {
+  align-self: center;
+  text-shadow: -0.25px -0.75px 0 orange;
+  text-decoration: underline;
+}
+
+.gamesBtn {
+  color: orange;
+  min-width: 150px;
+  border: none;
+  background-color: gray;
+  text-align: left;
+}
+
+.gamesBtn:hover {
+  background-color: orange;
+  color: black;
+  text-shadow: -0.25px -0.75px 0 whitesmoke;
+}
+
+.gamesListItem::before {
+  content: '🎮';
+  padding-right: 5px;
+  line-height: 1;
+}
+
+.gamesListItem {
+  list-style-type: none;
+}
+
+.gamesUL {
+  list-style-type: none;
 }

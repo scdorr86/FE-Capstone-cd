@@ -49,7 +49,7 @@ export default function CommentForm({ postId, onUpdate, comments }) {
     getAllProfiles()?.then(setProfiles);
   };
 
-  console.log('test', getProfiles, comments);
+  console.log('test', getProfiles);
 
   return (
     <>

@@ -11,20 +11,20 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Form from 'react-bootstrap/Form';
 import { signOut } from '../utils/auth';
 import ProfileForm from './forms/ProfileForm';
-import { getAllPosts } from '../api/postData';
-import PostForm from './forms/PostForm';
+// import { getAllPosts } from '../api/postData';
+// import PostForm from './forms/PostForm';
 
 export default function NavBarAuth({ searchInput, setSearchInput }) {
   // const router = useRouter();
-  const [posts, setPosts] = useState([]);
-  const getPosts = () => {
-    getAllPosts().then(setPosts);
-  };
+  // const [posts, setPosts] = useState([]);
+  // const getPosts = () => {
+  //   getAllPosts().then(setPosts);
+  // };
 
-  console.log(posts);
+  // console.log(posts);
 
   const handleChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setSearchInput(e.target.value.toLowerCase());
   };
 

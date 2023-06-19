@@ -16,18 +16,18 @@ function Home({
   const { user } = useAuth(); // TODO: COMMENT IN FOR AUTH
   const theProfile = useFirebaseProfile();
   const [profiles, setProfiles] = useState([]);
-  const [profile, setProfile] = useState([]);
+  // const [profile, setProfile] = useState([]);
   const [posts, setPosts] = useState();
-  const [checkprof, setCheckprof] = useState([]);
+  // const [checkprof, setCheckprof] = useState([]);
   const [searchedPosts, setSearchedPosts] = useState(posts);
 
   const getProfiles = () => {
     getAllProfiles()?.then(setProfiles);
   };
 
-  const getUserProfile = () => {
-    getSingleProfile(user.uid)?.then(setProfile);
-  };
+  // const getUserProfile = () => {
+  //   getSingleProfile(user.uid)?.then(setProfile);
+  // };
 
   const getPosts = () => {
     getAllPosts().then(setPosts);
@@ -37,23 +37,23 @@ function Home({
     getProfiles();
   }, []);
 
-  useEffect(() => {
-    getUserProfile();
-  }, []);
+  // useEffect(() => {
+  //   getUserProfile();
+  // }, []);
 
   useEffect(() => {
     getPosts();
   }, []);
 
-  useEffect(() => {
-    const profileCheck = profiles?.filter((index) => index?.uid === user?.uid);
-    setCheckprof(profileCheck);
-  }, [profiles, user.uid]);
+  // useEffect(() => {
+  //   const profileCheck = profiles?.filter((index) => index?.uid === user?.uid);
+  //   setCheckprof(profileCheck);
+  // }, [profiles, user.uid]);
 
   useEffect(() => {
     const filteredPosts = (posts?.filter((index) => (query === 'All' || query2 === 'All' ? index : (
 
-      index?.title.toLowerCase().includes(searchInput)
+      index?.title?.toLowerCase().includes(searchInput)
   || index?.sessionDay?.toLowerCase().includes(searchInput)
   || index?.sessionTime?.toLowerCase().includes(searchInput)
   || index?.username?.toLowerCase().includes(searchInput)

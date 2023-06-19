@@ -20,13 +20,16 @@ function Games() {
 
   return (
     <>
-      <div>
-        <h1>GAMES</h1>
-
-        {games[3]?.map((index) => (
-          // <><li onClick={console.log('test click', index.rating)}>{index.name}</li><Image src={index.background_image} /></>
-          <GameModal gamesObj={index} />
-        ))}
+      <div className="gamesLanding">
+        <h1 className="gamesLandingHeader">GAMES LIBRARY</h1>
+        <div className="gamesBtnList">
+          <ul className="gamesUL">
+            {games[3]?.map((index) => (
+              // <><li onClick={console.log('test click', index.rating)}>{index.name}</li><Image src={index.background_image} /></>
+              <li className="gamesListItem"><GameModal gamesObj={index} /></li>
+            ))}
+          </ul>
+        </div>
 
         {/* {games.3?.map((item) => (
           console.log('the item', item)
