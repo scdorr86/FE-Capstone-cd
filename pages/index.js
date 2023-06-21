@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { getAllProfiles, getSingleProfile } from '../api/profileData';
+import { getAllProfiles } from '../api/profileData';
 // import { getAllComments } from '../api/commentData';
 import { getAllPosts } from '../api/postData';
 import { useAuth } from '../utils/context/authContext'; // TODO: COMMENT IN FOR AUTH

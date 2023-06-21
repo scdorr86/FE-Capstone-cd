@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Image } from 'react-bootstrap';
+import Link from 'next/link';
 
 export default function GameModal({ gamesObj }) {
   const [show, setShow] = useState(false);
@@ -35,13 +36,16 @@ export default function GameModal({ gamesObj }) {
         <Image src={gamesObj.background_image} />
         <Modal.Body className="bg-light">
           <li>Release Date: {gamesObj?.released}</li>
-          <li>Genre: {gamesObj?.genres?.map((item) => (item.name))}</li>
+          <li>Genre: {gamesObj?.genres?.map((item) => (item.name)).join(', ')}</li>
           <li>Rating: {gamesObj?.rating} out of {gamesObj?.rating_top}</li>
           <li>ESRB Rating: {gamesObj?.esrb_rating?.name}</li>
-          <li>Platforms: {gamesObj?.platforms.map((item) => (item.platform.name))}</li>
+          <li>Platforms: {gamesObj?.platforms.map((item) => (item.platform.name)).join(', ')}</li>
         </Modal.Body>
 
         <Modal.Footer>
+          <Link href={`/modalScreenshots/${gamesObj?.id}`} passHref>
+            <Button className="btn-sm mx-auto" variant="dark" style={{ color: 'orange', minWidth: '200px' }}>Screenshots</Button>
+          </Link>
           <Button
             variant="light"
             className=""
@@ -58,5 +62,5 @@ export default function GameModal({ gamesObj }) {
 }
 
 GameModal.propTypes = {
-  gamesObj: PropTypes.shape.isRequired,
+  gamesObj: PropTypes.shape().isRequired,
 };

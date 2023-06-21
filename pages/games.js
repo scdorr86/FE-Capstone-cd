@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Image } from 'react-bootstrap';
-import getApiGames from '../api/gamesApiData';
+// import { Image } from 'react-bootstrap';
+import { v4 as uuidv4 } from 'uuid';
 import GameModal from '../components/GamesModal';
+import { getApiGames } from '../api/gamesApiData';
 
 function Games() {
   console.log('the games Landing');
@@ -26,7 +27,7 @@ function Games() {
           <ul className="gamesUL">
             {games[3]?.map((index) => (
               // <><li onClick={console.log('test click', index.rating)}>{index.name}</li><Image src={index.background_image} /></>
-              <li className="gamesListItem"><GameModal gamesObj={index} /></li>
+              <li key={uuidv4()} className="gamesListItem"><GameModal gamesObj={index} /></li>
             ))}
           </ul>
         </div>

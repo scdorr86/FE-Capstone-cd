@@ -1,4 +1,4 @@
-// import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -30,7 +30,7 @@ export default function Comments({ commObj, onUpdate }) {
         <div className="d-flex flex-column">
           <h6 className="comment-name by-author mt-1"><a href="http://creaticode.com/blog">{commObj?.userName}</a></h6>
           <div className="d-flex justify-content-between">
-            <div className='mt-1'>
+            <div className="mt-1">
               <FontAwesomeIcon className="pe-2" style={{ color: 'white' }} icon={faComment} /> <span className="cmtTxt">{commObj?.commentText}</span>
             </div>
             <div className="justify-content-end">
