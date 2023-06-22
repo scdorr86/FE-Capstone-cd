@@ -52,5 +52,5 @@ Comments.propTypes = {
   commObj: PropTypes.shape().isRequired,
   onUpdate: PropTypes.func.isRequired,
   deleteCmnt: PropTypes.func.isRequired,
-  theProfile: PropTypes.shape.isRequired,
+  theProfile: PropTypes.shape().isRequired,
 };
