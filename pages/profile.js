@@ -15,7 +15,7 @@ function Profile() {
   const [profile, setProfile] = useState([]);
   const userProfile = [theProfile];
 
-  console.warn('the profile', theProfile, userProfile);
+  // console.warn('the profile', theProfile, userProfile);
 
   const getPosts = () => {
     getAllPosts().then(setPosts);
@@ -84,7 +84,7 @@ function Profile() {
       </div>
 
       <div className="bottomPosts">
-        <h5 className="bottomPostHeader">My Posts:</h5>
+        <h5 className="bottomPostHeader"><Image className="logo" src="/logotest.png" />My Posts:</h5>
         <div className="d-flex flex-wrap bg-gray">
           {/* map over posts using Card component */}
           {userPosts.map((post) => (

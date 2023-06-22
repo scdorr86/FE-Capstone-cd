@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Card, Form } from 'react-bootstrap';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
+import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../../utils/context/authContext';
 import useFirebaseProfile from '../../utils/hooks/useFirebaseProfile';
 import Comments from '../Comments';
-import { createComment, getCommentsByPostId, updateComment } from '../../api/commentData';
+import { createComment, deleteComment, getCommentsByPostId, updateComment } from '../../api/commentData';
 import { getAllProfiles } from '../../api/profileData';
 
 const initialState = {
@@ -31,6 +32,12 @@ export default function CommentForm({ postId, onUpdate, comments }) {
     }));
   };
 
+  const deleteCmnt = (e, commObj) => {
+    if (window.confirm('Delete Comment?')) {
+      deleteComment(commObj.firebaseKey).then(() => onUpdate());
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = {
@@ -49,7 +56,7 @@ export default function CommentForm({ postId, onUpdate, comments }) {
     getAllProfiles()?.then(setProfiles);
   };
 
-  console.log('test', getProfiles, comments);
+  console.log('test', getProfiles);
 
   return (
     <>
@@ -84,12 +91,12 @@ export default function CommentForm({ postId, onUpdate, comments }) {
             </Form>
           </div>
           <div className="list-comments">
-            {comments?.map((comment) => <Comments commObj={comment} videoId={comment.video_id} onUpdate={onUpdate} />)}
+            {comments?.map((comment) => <Comments key={uuidv4()} commObj={comment} videoId={comment.video_id} onUpdate={onUpdate} deleteCmnt={deleteCmnt} theProfile={theProfile} />)}
           </div>
         </>
       ) : (
         <div className="list-comments">
-          {comments?.map((comment) => <Comments commObj={comment} profileObj={profiles} onUpdate={onUpdate} />)}
+          {comments?.map((comment) => <Comments key={uuidv4()} commObj={comment} profileObj={profiles} onUpdate={onUpdate} deleteCmnt={deleteCmnt} />)}
         </div>
       )}
     </>

@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Image } from 'react-bootstrap';
+import { v4 as uuidv4 } from 'uuid';
 import { getSinglePost } from '../../../api/postData';
 import { getAllProfiles } from '../../../api/profileData';
 import CommentForm from '../../../components/forms/CommentForm';
@@ -32,7 +33,7 @@ export default function PostRsvp() {
   // console.log('dynamic post', post);
   // console.log('get post', getSinglePost(firebaseKey));
 
-  console.log('tablcomments', comments);
+  // console.log('post', post);
 
   return (
     <>
@@ -49,7 +50,7 @@ export default function PostRsvp() {
           </thead>
           <tbody className="table-body">
             {post?.attendingNames?.map((index) => (
-              <tr key={index}>
+              <tr key={uuidv4()}>
                 <td className="table-cell">{index}</td>
               </tr>
             ))}
@@ -64,7 +65,7 @@ export default function PostRsvp() {
           </thead>
           <tbody className="table-body">
             {post?.NotAttendingNames?.map((index) => (
-              <tr key={index}>
+              <tr key={uuidv4()}>
                 <td className="table-cell">{index}</td>
               </tr>
             ))}
@@ -79,7 +80,7 @@ export default function PostRsvp() {
           </thead>
           <tbody className="table-body">
             {post?.maybeNames?.map((index) => (
-              <tr key={index}>
+              <tr key={uuidv4()}>
                 <td className="table-cell">{index}</td>
               </tr>
             ))}
