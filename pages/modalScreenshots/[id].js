@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { Image } from 'react-bootstrap';
+import { v4 as uuidv4 } from 'uuid';
 import { getSingleApiGame } from '../../api/gamesApiData';
 
 export default function PostRsvp() {
@@ -13,17 +15,14 @@ export default function PostRsvp() {
     getSingleApiGame(id)?.then((data) => setGame(data));
   }, [id]);
 
-  console.log('game screen obj', game[3]);
-
-  const singleGame = game[3]?.filter((item) => console.log('this is itemid', item.id));
-
-  // const singleGame = game[3]?.filter((item) => (item.id === id));
-
-  console.log('single game', singleGame, id);
+  console.log('game screen obj', game);
+  console.log('single game', id);
+  console.log('image screen', game.results);
 
   return (
     <>
       <div><h1>{}Screenshots</h1></div>
+      {game?.results?.map((item) => <Image key={uuidv4()} src={item.image} />)}
     </>
   );
 }

@@ -5,23 +5,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import Button from 'react-bootstrap/Button';
-import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
-import { deleteComment } from '../api/commentData';
+// import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
+// import { deleteComment } from '../api/commentData';
 
-export default function Comments({ commObj, onUpdate }) {
+export default function Comments({ commObj, onUpdate, deleteCmnt, theProfile }) {
   // console.log('commObj', commObj);
-  const theProfile = useFirebaseProfile();
   // const [comments, setComments] = useState();
 
   // useEffect(() => {
   //   getCommentsByPostId(commObj.postId).then(setComments);
-  // }, [commObj.postId]);
-
-  const deleteCmnt = () => {
-    if (window.confirm('Delete Comment?')) {
-      deleteComment(commObj.firebaseKey).then(() => onUpdate());
-    }
-  };
+  // // }, [commObj.postId]);
 
   return (
     <div className="d-flex flex-column mb-2">
@@ -38,7 +31,7 @@ export default function Comments({ commObj, onUpdate }) {
                 commObj?.profileID === theProfile?.firebaseKey ? (
                   <Button
                     className="bg-transparent btn-sm mx-2 border-0"
-                    onClick={deleteCmnt}
+                    onClick={(e) => deleteCmnt(e, commObj)}
                   ><FontAwesomeIcon style={{ color: 'orange' }} className="pe-2" icon={faTrashAlt} />
                   </Button>
                 )
@@ -58,4 +51,6 @@ export default function Comments({ commObj, onUpdate }) {
 Comments.propTypes = {
   commObj: PropTypes.shape().isRequired,
   onUpdate: PropTypes.func.isRequired,
+  deleteCmnt: PropTypes.func.isRequired,
+  theProfile: PropTypes.shape.isRequired,
 };
