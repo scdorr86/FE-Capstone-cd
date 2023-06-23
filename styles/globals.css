@@ -209,7 +209,7 @@ th {
   text-decoration-line: underline;
 }
 
-li {
+.profileLi {
   color: orange;
   list-style-type: square;
   font-family: fantasy;
@@ -305,4 +305,30 @@ ul {
 
 .gamesUL {
   list-style-type: none;
+}
+
+.screenshots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.customBullet::before {
+  content: ""; /* Use the Unicode bullet character */
+  position: absolute;
+  left: 15px;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  background: url(https://icons8.com/icon/25194/super-mario);
+}
+
+.customBullet {
+  list-style-type: none;
+}
+
+.gameDetailItem {
+  color: orange;
+  list-style-type: square;
+  font-family: fantasy;
 }

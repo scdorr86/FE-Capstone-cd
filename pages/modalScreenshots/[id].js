@@ -4,7 +4,7 @@ import { Image } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import { getSingleApiGame } from '../../api/gamesApiData';
 
-export default function PostRsvp() {
+export default function Screenshot() {
   const [game, setGame] = useState({});
   const router = useRouter();
   const { id } = router.query;
@@ -21,8 +21,8 @@ export default function PostRsvp() {
 
   return (
     <>
-      <div><h1>{}Screenshots</h1></div>
-      {game?.results?.map((item) => <Image key={uuidv4()} src={item.image} />)}
+      <div><h1 className="gamesLandingHeader">Screenshots</h1></div>
+      <div className="screenshots">{game?.results?.map((item) => <Image key={uuidv4()} src={item.image} />)}</div>
     </>
   );
 }

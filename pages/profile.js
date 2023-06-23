@@ -60,16 +60,16 @@ function Profile() {
         <div className="topAbout">
           <div>
             <h6 className="profileAbout">About Me</h6>
-            <li>My Availability:
+            <li className="profileLi">My Availability:
               <ul>{profile?.generalAvailability}</ul>
             </li>
-            <li>My Games:
+            <li className="profileLi">My Games:
               <ul>{profile?.games}</ul>
             </li>
-            <li>My Consoles:
+            <li className="profileLi">My Consoles:
               <ul>{profile?.consoles}</ul>
             </li>
-            <li>Preferred Game Times:
+            <li className="profileLi">Preferred Game Times:
               <ul>{profile?.PreferredGameTimes}</ul>
             </li>
           </div>
