@@ -35,19 +35,19 @@ export default function GameModal({ gamesObj }) {
         </Modal.Header>
         <Image src={gamesObj.background_image} />
         <Modal.Body className="bg-light">
-          <li>Release Date: {gamesObj?.released}</li>
-          <li>Genre: {gamesObj?.genres?.map((item) => (item.name)).join(', ')}</li>
-          <li>Rating: {gamesObj?.rating} out of {gamesObj?.rating_top}</li>
-          <li>ESRB Rating: {gamesObj?.esrb_rating?.name}</li>
-          <li>Platforms: {gamesObj?.platforms.map((item) => (item.platform.name)).join(', ')}</li>
+          <li className="customBullet">Release Date: {gamesObj?.released}</li>
+          <li className="gameDetailItem">Genre: {gamesObj?.genres?.map((item) => (item.name)).join(', ')}</li>
+          <li className="gameDetailItem">Rating: {gamesObj?.rating} out of {gamesObj?.rating_top}</li>
+          <li className="gameDetailItem">ESRB Rating: {gamesObj?.esrb_rating?.name}</li>
+          <li className="gameDetailItem">Platforms: {gamesObj?.platforms.map((item) => (item.platform.name)).join(', ')}</li>
         </Modal.Body>
 
-        <Modal.Footer>
+        <Modal.Footer className="d-flex justify-content-around">
           <Link href={`/modalScreenshots/${gamesObj?.id}`} passHref>
-            <Button className="btn-sm mx-auto" variant="dark" style={{ color: 'orange', minWidth: '200px' }}>Screenshots</Button>
+            <Button className="" variant="dark" style={{ color: 'orange', minWidth: '170px' }}>Screenshots</Button>
           </Link>
           <Button
-            variant="light"
+            variant="dark"
             className=""
             onClick={handleClose}
             style={{ color: 'orange', minWidth: '125px' }}
