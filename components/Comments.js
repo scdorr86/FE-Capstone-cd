@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,9 @@ import Button from 'react-bootstrap/Button';
 // import useFirebaseProfile from '../utils/hooks/useFirebaseProfile';
 // import { deleteComment } from '../api/commentData';
 
-export default function Comments({ commObj, onUpdate, deleteCmnt, theProfile }) {
+export default function Comments({
+  commObj, deleteCmnt, theProfile,
+}) {
   // console.log('commObj', commObj);
   // const [comments, setComments] = useState();
 
@@ -50,7 +52,7 @@ export default function Comments({ commObj, onUpdate, deleteCmnt, theProfile }) 
 
 Comments.propTypes = {
   commObj: PropTypes.shape().isRequired,
-  onUpdate: PropTypes.func.isRequired,
+  // onUpdate: PropTypes.func.isRequired,
   deleteCmnt: PropTypes.func.isRequired,
   theProfile: PropTypes.shape().isRequired,
 };

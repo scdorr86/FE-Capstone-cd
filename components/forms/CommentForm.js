@@ -7,7 +7,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../../utils/context/authContext';
 import useFirebaseProfile from '../../utils/hooks/useFirebaseProfile';
 import Comments from '../Comments';
-import { createComment, deleteComment, getCommentsByPostId, updateComment } from '../../api/commentData';
+import {
+  createComment, deleteComment, getCommentsByPostId, updateComment,
+} from '../../api/commentData';
 import { getAllProfiles } from '../../api/profileData';
 
 const initialState = {

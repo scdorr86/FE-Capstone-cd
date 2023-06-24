@@ -36,7 +36,7 @@ export default function GameModal({ gamesObj }) {
         <Image src={gamesObj.background_image} />
         <Modal.Body className="bg-light">
           <li className="customBullet">Release Date: {gamesObj?.released}</li>
-          <li className="profileLi">Genre: {gamesObj?.genres?.map((item) => (item.name)).join(', ')}</li>
+          <li className="gameDetailItem">Genre: {gamesObj?.genres?.map((item) => (item.name)).join(', ')}</li>
           <li className="gameDetailItem">Rating: {gamesObj?.rating} out of {gamesObj?.rating_top}</li>
           <li className="gameDetailItem">ESRB Rating: {gamesObj?.esrb_rating?.name}</li>
           <li className="gameDetailItem">Platforms: {gamesObj?.platforms.map((item) => (item.platform.name)).join(', ')}</li>
