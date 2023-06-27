@@ -33,7 +33,7 @@ export default function PostRsvp() {
   // console.log('dynamic post', post);
   // console.log('get post', getSinglePost(firebaseKey));
 
-  // console.log('post', post);
+  console.log('profile', profile);
 
   return (
     <>
