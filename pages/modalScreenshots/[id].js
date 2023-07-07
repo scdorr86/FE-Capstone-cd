@@ -22,7 +22,7 @@ export default function Screenshot() {
   return (
     <>
       <div><h1 className="gamesLandingHeader">Screenshots</h1></div>
-      <div className="screenshots">{game?.results?.map((item) => <Image key={uuidv4()} src={item.image} />)}</div>
+      <div className="screenshots">{game?.results?.map((item) => <Image className="screenshot" key={uuidv4()} src={item.image} />)}</div>
     </>
   );
 }
