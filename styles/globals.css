@@ -332,3 +332,9 @@ ul {
   list-style-type: square;
   font-family: fantasy;
 }
+
+.screenshot {
+  max-height: 500px;
+  max-width: 500px;
+  margin: 5px;
+}
