@@ -47,7 +47,7 @@ function PostCard({ postObj, onUpdate, profileObj }) {
         </div>
       </div>
 
-      <Card style={{ width: '18rem', margin: '10px' }}>
+      {/* <Card style={{ width: '18rem', margin: '10px' }}>
         <Card.Img variant="top" src={profile?.avatar} alt={postObj?.title} style={{ height: '150px' }} />
         <Card.Body>
           <Card.Title style={{ color: 'red' }}>Game Session: {postObj?.title}</Card.Title>
@@ -61,7 +61,7 @@ function PostCard({ postObj, onUpdate, profileObj }) {
           <AttendBtn postObj={updatedPost} updatePostHandler={updatePostHandler} />
           <RsvpBtn postObj={updatedPost} />
         </Card.Body>
-      </Card>
+      </Card> */}
     </>
   );
 }
