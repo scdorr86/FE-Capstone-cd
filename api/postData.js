@@ -1,4 +1,4 @@
-import { deleteComment } from "./commentData";
+import { deleteComment } from './commentData';
 
 const dbUrl = 'https://front-end-capstone-11a38-default-rtdb.firebaseio.com';
 
