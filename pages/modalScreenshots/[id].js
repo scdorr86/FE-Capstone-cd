@@ -9,7 +9,7 @@ export default function Screenshot() {
   const router = useRouter();
   const { id } = router.query;
 
-  console.log('this is the id', id);
+  // console.log('this is the id', id);
 
   useEffect(() => {
     getSingleApiGame(id)?.then((data) => setGame(data));
