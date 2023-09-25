@@ -5,7 +5,7 @@ import GameModal from '../components/GamesModal';
 import { getApiGames } from '../api/gamesApiData';
 
 function Games() {
-  console.log('the games Landing');
+  // console.log('the games Landing');
 
   const [games, setGames] = useState([]);
 
