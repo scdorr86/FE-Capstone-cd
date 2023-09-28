@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import { Image } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import GameModal from '../components/GamesModal';
 import { getApiGames } from '../api/gamesApiData';
